@@ -1,34 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Register</title>
-</head>
-<body>
-    <div class="login-form">
-      <h2 class="login-label">Register new user</h2>
-      <label for="firstName" class="placeholder-label">First Name</label>
-      <input type="text" id="firstname" class="login-input" placeholder="Enter the first name" [(ngModel)]="firstName">
-      <label for="lastName" class="placeholder-label">Last Name</label>
-      <input type="text" id="lastname" class="login-input" placeholder="Enter the last name" [(ngModel)]="lastName">
-      <label for="username" class="placeholder-label">Username</label>
-      <input type="text" id="username" class="login-input" placeholder="Enter the username" [(ngModel)]="username">
-      <label for="password" class="placeholder-label">Password</label>
-      <input type="password" id="password" class="login-input" placeholder="Enter the password" [(ngModel)]="password">
-      <label for="role" class="placeholder-label">Role</label>
-      <select name="role" [(ngModel)]="role">
-        <option value="SHOP_MANAGER">Shop manager</option>
-        <option value="HEAD_COACH">Head coach</option>
-        <option value="ASSISTANT_COACH">Assistant coach</option>
-        <option value="EVENT_ORGANIZATOR">Event organizator</option>
-      </select>
-      <form (ngSubmit)="register()" class="button-group">
-        <button type="submit" class="register-button">Add user</button>
-      </form>
-      <form (ngSubmit)="logOut()" class="button-group">
-        <button type="submit" class="login-button">Log out</button>
-      </form>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+  </head>
+  <body>
+    <div style="display: flex; flex-direction: column">
+      <app-header></app-header>
+      <div
+        style="
+          display: flex;
+          height: 93vh;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <!-- Main box -->
+        <div
+          style="
+            padding: 160px;
+            width: 98vw;
+            height: 90vh;
+            background-color: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+              0 4px 6px -4px rgb(0 0 0 / 0.1);
+          "
+        >
+          <div style="display: flex; flex-direction: column; width: 20vw">
+            <p class="text-5xl" style="margin-bottom: 8px">
+              <b>Add new employee</b>
+            </p>
+            <p class="text-2xl" style="margin-bottom: 32px">
+              Fill in the form below to add an employee
+            </p>
+            <!-- FIRST NAME -->
+            <label for="firstName" class="placeholder-label">First name</label>
+            <input
+              type="text"
+              id="firstname"
+              class="login-input"
+              placeholder="Enter the first name"
+              [(ngModel)]="firstName"
+            />
+            <!-- LAST NAME -->
+            <label for="lastName" class="placeholder-label">Last name</label>
+            <input
+              type="text"
+              id="lastname"
+              class="login-input"
+              placeholder="Enter the last name"
+              [(ngModel)]="lastName"
+            />
+            <!-- USERNAME -->
+            <label for="username" class="placeholder-label">Username</label>
+            <input
+              type="text"
+              id="username"
+              class="login-input"
+              placeholder="Enter the username"
+              [(ngModel)]="username"
+            />
+            <label for="password" class="placeholder-label">Password</label>
+            <input
+              type="password"
+              id="password"
+              class="login-input"
+              placeholder="Enter the password"
+              [(ngModel)]="password"
+            />
+            <label for="role" class="placeholder-label">Role</label>
+            <select name="role" [(ngModel)]="role" class="login-input">
+              <option value="SHOP_MANAGER">Shop manager</option>
+              <option value="HEAD_COACH">Head coach</option>
+              <option value="ASSISTANT_COACH">Assistant coach</option>
+              <option value="EVENT_ORGANIZATOR">Event organizator</option>
+            </select>
+            <form (ngSubmit)="register()" class="button-group">
+              <button type="submit" class="register-button">
+                Create account
+              </button>
+            </form>
+            <!-- Old button
+            <form (ngSubmit)="logOut()" class="button-group">
+              <button type="submit" class="logout-button">Log out</button>
+            </form>-->
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>

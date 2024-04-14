@@ -4,13 +4,14 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs';
+import { HeaderComponent } from "../../components/header/header.component";
 
 @Component({
-  selector: 'app-admin-homepage',
-  standalone: true,
-  imports: [FormsModule, CommonModule],
-  templateUrl: './admin-homepage.component.html',
-  styleUrl: './admin-homepage.component.css'
+    selector: 'app-admin-homepage',
+    standalone: true,
+    templateUrl: './admin-homepage.component.html',
+    styleUrl: './admin-homepage.component.css',
+    imports: [FormsModule, CommonModule, HeaderComponent]
 })
 export class AdminHomepageComponent {
   username = '';
