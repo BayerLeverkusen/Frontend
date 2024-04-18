@@ -19,6 +19,7 @@ export class AdminHomepageComponent {
   firstName = '';
   lastName = '';
   role = '';
+  dateOfBirth = '';
   errorMessage = '';
 
   constructor(private http: HttpClient, private router: Router) { }
@@ -33,7 +34,8 @@ export class AdminHomepageComponent {
       password: this.password,
       firstName: this.firstName,
       lastName: this.lastName,
-      role: this.role
+      role: this.role,
+      dateOfBirth: this.dateOfBirth
     };
 
     this.http.post<any>('http://localhost:90/api/auth/register', credentials)

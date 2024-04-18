@@ -1,39 +1,21 @@
-<div class="header">
-  <!-- Image and Link -->
-  <div style="display: flex; align-items: center">
-    <img src="assets/logo.png" class="logo_img" />
-    <a href="#" class="text-2xl" style="margin-left: 32px; color: #e22726"
-      >Administrator dashboard</a
-    >
-  </div>
-  <!-- Empty div -->
-  <div style="flex: 9"></div>
-
-  <!-- User profile -->
-  <div
-    style="
-      display: flex;
-      flex: 1;
-      align-items: center;
-      justify-content: flex-end;
-    "
-    (click)="toggleModal()"
-  >
-    <img src="assets/bell.png" style="width: 24px; margin-right: 32px" />
-    <div class="ellipse">
-      <span style="font-weight: 500">A</span>
-    </div>
-    <img
-      src="assets/chevron-down.png"
-      style="width: 12px; margin-left: 8px; margin-right: 16px"
-    />
+<div class="bg-white w-full py-2 px-4 flex justify-between items-center border-b border-gray-200 rounded-lg">
+  <div class="flex items-center">
+    <img src="assets/logo.png" alt="Logo" class="h-12 w-auto">
+    <p class="ml-4 text-red-600 text-2xl font-medium">Administrator dashboard</p>
   </div>
 
-  <!-- Modal -->
-  <div class="modal" *ngIf="showModal">
-    <div class="modal-content">
-      <button (click)="editProfile()" class="edit-profile-button">Edit Profile</button>
-      <button (click)="logout()" class="deny-button">Log out</button>
+  <div class="flex items-center space-x-4 cursor-pointer">
+    <img src="assets/bell.png" alt="Notifications" class="w-6">
+    <div class="w-14 h-14 rounded-full bg-gradient-to-b from-red-600 to-gray-800 flex justify-center items-center text-white text-3xl">A</div>
+    <img (click)="toggleModal()" src="assets/chevron-down.png" alt="Expand" class="w-3">
+  </div>
+
+  <div *ngIf="showModal" class="absolute mt-10 top-7 right-1 bg-white w-40 h-32 z-50 shadow-lg rounded-lg overflow-auto">
+    <div class="flex flex-col justify-center items-center h-full ">
+      <button (click)="editProfile()" class="w-3/4 py-2 border border-gray-800 text-gray-800 rounded-md my-2">Edit Profile</button>
+      <button (click)="logout()" class="w-3/4 py-2 bg-red-100 text-red-600 rounded-md">Log out</button>
     </div>
   </div>
 </div>
+
+
