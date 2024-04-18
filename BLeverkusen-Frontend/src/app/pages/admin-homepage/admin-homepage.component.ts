@@ -4,13 +4,14 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs';
+import { HeaderComponent } from "../../components/header/header.component";
 
 @Component({
-  selector: 'app-admin-homepage',
-  standalone: true,
-  imports: [FormsModule, CommonModule],
-  templateUrl: './admin-homepage.component.html',
-  styleUrl: './admin-homepage.component.css'
+    selector: 'app-admin-homepage',
+    standalone: true,
+    templateUrl: './admin-homepage.component.html',
+    styleUrl: './admin-homepage.component.css',
+    imports: [FormsModule, CommonModule, HeaderComponent]
 })
 export class AdminHomepageComponent {
   username = '';
@@ -18,6 +19,7 @@ export class AdminHomepageComponent {
   firstName = '';
   lastName = '';
   role = '';
+  dateOfBirth = '';
   errorMessage = '';
 
   constructor(private http: HttpClient, private router: Router) { }
@@ -32,7 +34,8 @@ export class AdminHomepageComponent {
       password: this.password,
       firstName: this.firstName,
       lastName: this.lastName,
-      role: this.role
+      role: this.role,
+      dateOfBirth: this.dateOfBirth
     };
 
     this.http.post<any>('http://localhost:90/api/auth/register', credentials)
