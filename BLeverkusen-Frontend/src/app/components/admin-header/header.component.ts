@@ -26,7 +26,23 @@ export class HeaderComponent {
     if (event) {
       event.preventDefault();
     }
-
+    localStorage.removeItem('token');
     this.router.navigate(['/login']);
+  }
+
+  viewUsers(event?: Event){
+    if (event) {
+      event.preventDefault();
+    }
+
+    this.router.navigate(['/adminViewAllUsers']);
+  }
+
+  addUser(event?: Event){
+    if (event) {
+      event.preventDefault();
+    }
+
+    this.router.navigate(['/adminHomePage']);
   }
 }
