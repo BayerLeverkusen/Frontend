@@ -8,7 +8,7 @@ export class iTInterceptor implements HttpInterceptor {
     
     intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
       const authToken = localStorage.getItem('token');
-      if(authToken){
+      if(authToken && !request.url.includes('/api/auth')){
         const authReq = request.clone({
           setHeaders: {
             Authorization: `Bearer ${authToken}`,

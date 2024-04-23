@@ -43,6 +43,15 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
+  getUsernameFromToken(): string | null {
+    const token = this.getToken();
+    if (token) {
+      const decodedToken = this.jwtHelper.decodeToken(token);
+      return decodedToken.sub;
+    }
+    return null;
+  }
+
   routeUserBasedOnRole(token: string) {
     const decodedToken = this.jwtHelper.decodeToken(token);
     const userRole = decodedToken.role;

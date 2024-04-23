@@ -18,8 +18,11 @@ export class HeaderComponent {
     this.showModal = !this.showModal; // Toggle the value of showModal
   }
 
-  editProfile() {
-    console.log('Edit Profile clicked');
+  editProfile(event? : Event) {
+    if (event) {
+      event.preventDefault();
+    }
+    this.router.navigate(['/editProfile']);
   }
 
   logout(event?: Event){
