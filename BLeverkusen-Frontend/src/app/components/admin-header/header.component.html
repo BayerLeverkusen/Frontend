@@ -4,6 +4,12 @@
     <p class="ml-4 text-red-600 text-2xl font-medium">Administrator dashboard</p>
   </div>
 
+  <div class="flex items-center">
+    <a (click)="addUser()" class="ml-4 text-1xl font-small">Add new employee</a>
+    <span class="vertical-line"></span>
+    <a (click)="viewUsers()" class="ml-2 text-1xl font-small">View all users</a>
+  </div>
+
   <div class="flex items-center space-x-4 cursor-pointer">
     <img src="assets/bell.png" alt="Notifications" class="w-6">
     <div class="w-14 h-14 rounded-full bg-gradient-to-b from-red-600 to-gray-800 flex justify-center items-center text-white text-3xl">A</div>

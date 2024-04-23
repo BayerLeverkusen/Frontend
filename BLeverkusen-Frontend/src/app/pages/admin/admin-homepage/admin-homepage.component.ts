@@ -1,10 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-import { first } from 'rxjs';
-import { HeaderComponent } from "../../components/header/header.component";
+import { HeaderComponent } from "../../../components/admin-header/header.component";
+import { AuthService } from '../../../services/auth-service/auth.service';
 
 @Component({
     selector: 'app-admin-homepage',
@@ -21,8 +19,9 @@ export class AdminHomepageComponent {
   role = '';
   dateOfBirth = '';
   errorMessage = '';
+  showModal = false;
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private authService: AuthService) { }
 
   register(event?: Event) {
     if (event) {
@@ -38,16 +37,19 @@ export class AdminHomepageComponent {
       dateOfBirth: this.dateOfBirth
     };
 
-    this.http.post<any>('http://localhost:90/api/auth/register', credentials)
-      .subscribe(
-        response => {
-          console.log("User successfully added!")
-        },
-        error => {
-          this.errorMessage = 'There was a problem registering the user';
-          console.error('Error:', error);
-        }
-      );
+    this.authService.register(credentials).subscribe({
+      next: (response) => {
+          console.log("User successfully registered!", response);
+          this.showModal = true;
+      },
+      error: (err) => {
+          console.error('Registration failed:', err);
+      }
+  });
+  }
+
+  hideModal() {
+    this.showModal = false;
   }
 
   logOut(event?: Event){
@@ -55,6 +57,6 @@ export class AdminHomepageComponent {
       event.preventDefault();
     }
 
-    this.router.navigate(['/login']);
+    this.authService.logout();
   }
 }
