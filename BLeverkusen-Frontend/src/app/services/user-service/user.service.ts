@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class UserService {
   private usersUrl = 'http://localhost:8081/api/user/getAll';
   private editProfileUrl = 'http://localhost:8081/api/user/editProfile';
-
+  private deleteUserUrl = 'http://localhost:8081/api/user/delete';
 
   constructor(
     private http: HttpClient,
@@ -21,13 +21,11 @@ export class UserService {
   }
 
   editProfile(credentials: {username: string | null; name: string | null; lastName: string | null; oldPassword: string | null; newPassword: string | null;}){
-    return this.http.put(this.editProfileUrl, credentials).subscribe({
-      next: (response) => {
-        console.log("Profile successfully edited!", response);
-      },
-      error: (err) => {
-        console.error('Editing failed:', err);
-      }
-    });
+    return this.http.put(this.editProfileUrl, credentials);
+  }
+
+  deleteUser(id: number): Observable<any> {
+    const url = `${this.deleteUserUrl}/${id}`;
+    return this.http.delete(url);
   }
 }

@@ -29,14 +29,7 @@ export class AuthService {
   }
 
   register(credentials: { username: string; password: string; firstName: string; lastName: string; role: string; dateOfBirth: string }) {
-    return this.http.post<any>(this.registerUrl, credentials).subscribe({
-      next: (response) => {
-        console.log("User successfully registered!", response);
-      },
-      error: (err) => {
-        console.error('Registration failed:', err);
-      }
-    });
+    return this.http.post<any>(this.registerUrl, credentials);
   }
 
   getToken(): string | null {

@@ -19,6 +19,7 @@ export class AdminHomepageComponent {
   role = '';
   dateOfBirth = '';
   errorMessage = '';
+  showModal = false;
 
   constructor(private authService: AuthService) { }
 
@@ -36,7 +37,19 @@ export class AdminHomepageComponent {
       dateOfBirth: this.dateOfBirth
     };
 
-    this.authService.register(credentials);
+    this.authService.register(credentials).subscribe({
+      next: (response) => {
+          console.log("User successfully registered!", response);
+          this.showModal = true;
+      },
+      error: (err) => {
+          console.error('Registration failed:', err);
+      }
+  });
+  }
+
+  hideModal() {
+    this.showModal = false;
   }
 
   logOut(event?: Event){

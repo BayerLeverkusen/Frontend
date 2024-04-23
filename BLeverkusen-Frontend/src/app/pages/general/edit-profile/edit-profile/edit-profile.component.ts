@@ -19,6 +19,8 @@ export class EditProfileComponent {
   newLastName = '';
   newPassword = '';
   oldPassword = '';
+  showModal = false;
+
 
   constructor(private authService: AuthService, private userService: UserService){}
 
@@ -34,7 +36,19 @@ export class EditProfileComponent {
       oldPassword: this.oldPassword || null,
       newPassword: this.newPassword || null
     };
-    this.userService.editProfile(credentials);
+    this.userService.editProfile(credentials).subscribe({
+      next: (response) => {
+        console.log("Profile successfully edited!", response);
+        this.showModal = true;
+      },
+      error: (err) => {
+        console.error('Editing failed:', err);
+      }
+    });
 
+  }
+
+  hideModal() {
+    this.showModal = false;
   }
 }
