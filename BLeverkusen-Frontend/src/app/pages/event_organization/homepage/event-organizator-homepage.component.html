@@ -11,62 +11,23 @@
   <app-header class="fixed top-0 shadow-md w-full"></app-header>
 
   <main class="flex-grow bg-white rounded-lg shadow-md px-16 py-9 my-0" style="padding-top: 15vh;">
-    <div class="header ml-4">
-      <div>
-        <p class="text-5xl mb-2">
-          <b>Add new employee</b>
-        </p>
-        <p class="text-2xl mb-8">
-          Fill in the form below to add an employee
-        </p>
-      </div>
+    <div>
+      <div class="mb-4">
+        <input type="text" id="username" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 rounded-md w-1/4 px-3 py-2 border border-gray-300" [(ngModel)]="username" placeholder="Enter the event name">
+        <input type="date" id="birthdate" datepicker-format="mm/dd/yyyy" [(ngModel)]="dateOfBirth" class="w-1/20 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
-      <div class="flex">
-        <div class="flex-1 mr-4 ">
-          <div class="mb-4">
-            <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">First name</label>
-            <input type="text" id="firstName" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 rounded-md w-2/3 px-3 py-2 border border-gray-300" [(ngModel)]="firstName" placeholder="Enter the first name">
-          </div>
+      </div>
+       
+      <button type="submit" class="big-light-gray-button" (click)="register()">
+        Create account
+      </button>
+      <button type="submit" class="big-light-gray-button ml-4" (click)="register()">
+        Create account
+      </button>
+      <button type="submit" class="big-light-gray-button ml-4" (click)="register()">
+        Create account
+      </button>
       
-          <div class="mb-4">
-            <label for="lastName" class="block text-sm font-medium text-gray-700 mb-2">Last name</label>
-            <input type="text" id="lastName" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 rounded-md w-2/3 px-3 py-2 border border-gray-300" [(ngModel)]="lastName" placeholder="Enter the last name">
-          </div>
-  
-          <div class="mb-4">
-            <label for="username" class="block text-sm font-medium text-gray-700 mb-2">Username</label>
-            <input type="text" id="username" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 rounded-md w-2/3 px-3 py-2 border border-gray-300" [(ngModel)]="username" placeholder="Enter the username">
-          </div>
-  
-          <div class="mb-4">
-            <label for="password" class="block text-sm font-medium text-gray-700 mb-2">Password</label>
-            <input type="text" id="password" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 rounded-md w-2/3 px-3 py-2 border border-gray-300" [(ngModel)]="password" placeholder="Enter the password">
-          </div>
-  
-          <label for="role" class="block text-sm font-medium text-gray-700 mb-2">Role</label>
-          <select name="role" [(ngModel)]="role" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 rounded-md w-2/3 px-3 py-2 border border-gray-300">
-            <option value="SHOP_MANAGER">Shop manager</option>
-            <option value="HEAD_COACH">Head coach</option>
-            <option value="ASSISTANT_COACH">Assistant coach</option>
-            <option value="EVENT_ORGANIZATOR">Event organizator</option>
-            <option value="DIRECTOR">Director</option>
-          </select>
-        </div>
-
-        <div class="flex-1 ml-4 flex flex-col">
-          <div class="mb-8">
-              <label for="birthdate" class="block text-sm font-medium text-gray-700 mb-2">Date of birth</label>
-              <input type="date" id="birthdate" datepicker-format="mm/dd/yyyy" [(ngModel)]="dateOfBirth" class="w-2/3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-          </div>  
-  
-          <div class="flex justify-center mt-auto">
-            <button type="submit" class="bg-black text-white py-2 px-4 rounded-md w-1/3" (click)="register()">
-              Create account
-            </button>
-          </div>
-        </div>
-        
-      </div>
     </div>
   </main>
 
