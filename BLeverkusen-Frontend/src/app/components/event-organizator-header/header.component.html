@@ -1,0 +1,33 @@
+<div class="bg-white w-full py-2 px-4 flex justify-between items-center border-b border-gray-200 rounded-lg">
+  <div class="flex items-center">
+    <img src="assets/logo.png" alt="Logo" class="h-12 w-auto">
+    <p class="ml-4 text-red-600 text-2xl font-medium">Event Organizator dashboard</p>
+  </div>
+
+  <div class="flex items-center">
+    <a (click)="viewEvents()" class="ml-4 text-1xl font-small">My Events</a>
+    <span class="vertical-line"></span>
+    <a (click)="createEvent()" class="ml-2 text-1xl font-small">Create Event</a>
+    <span class="vertical-line"></span>
+    <a (click)="createTemplate()" class="ml-2 text-1xl font-small">Create Template</a>
+    <span class="vertical-line"></span>
+    <a (click)="planner()" class="ml-2 text-1xl font-small">Planner</a>
+    <span class="vertical-line"></span>
+    <a (click)="reports()" class="ml-2 text-1xl font-small">Reports</a>
+  </div>
+
+  <div class="flex items-center space-x-4 cursor-pointer">
+    <img src="assets/bell.png" alt="Notifications" class="w-6">
+    <div class="w-14 h-14 rounded-full bg-gradient-to-b from-red-600 to-gray-800 flex justify-center items-center text-white text-3xl">A</div>
+    <img (click)="toggleModal()" src="assets/chevron-down.png" alt="Expand" class="w-3">
+  </div>
+
+  <div *ngIf="showModal" class="absolute mt-10 top-7 right-1 bg-white w-40 h-32 z-50 shadow-lg rounded-lg overflow-auto">
+    <div class="flex flex-col justify-center items-center h-full ">
+      <button (click)="editProfile()" class="w-3/4 py-2 border border-gray-800 text-gray-800 rounded-md my-2">Edit Profile</button>
+      <button (click)="logout()" class="w-3/4 py-2 bg-red-100 text-red-600 rounded-md">Log out</button>
+    </div>
+  </div>
+</div>
+
+
