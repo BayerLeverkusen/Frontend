@@ -11,7 +11,7 @@ import { AuthService } from '../../../services/auth-service/auth.service';
     styleUrl: './event-organizator-homepage.component.css',
     imports: [FormsModule, CommonModule, HeaderComponent]
 })
-export class eventOrganizatorHomepageComponent {
+export class EventOrganizatorHomepageComponent {
   username = '';
   password = '';
   firstName = '';

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { eventOrganizatorHomepageComponent } from './event-organizator-homepage.component';
+import { EventOrganizatorHomepageComponent } from './event-organizator-homepage.component';
 
 describe('AdminHomepageComponent', () => {
-  let component: eventOrganizatorHomepageComponent;
-  let fixture: ComponentFixture<eventOrganizatorHomepageComponent>;
+  let component: EventOrganizatorHomepageComponent;
+  let fixture: ComponentFixture<EventOrganizatorHomepageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [eventOrganizatorHomepageComponent]
+      imports: [EventOrganizatorHomepageComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(eventOrganizatorHomepageComponent);
+    fixture = TestBed.createComponent(EventOrganizatorHomepageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
