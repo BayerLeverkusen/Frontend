@@ -11,5 +11,6 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponent},
     { path: 'adminHomePage', component: AdminHomepageComponent, canActivate: [AdminAuthGuard]},
     { path: 'adminViewAllUsers', component: AdminViewAllUsersComponent, canActivate: [AdminAuthGuard]},
-    { path: 'editProfile', component: EditProfileComponent, canActivate: [UserAuthGuard]}
+    { path: 'editProfile', component: EditProfileComponent, canActivate: [UserAuthGuard]},
+    { path: 'eventOrganizatorHomePage', component: AdminHomepageComponent, canActivate: [AdminAuthGuard]}
 ];
