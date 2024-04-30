@@ -11,16 +11,24 @@ import { Router } from '@angular/router';
     templateUrl: './event-organizator-homepage.component.html',
     styleUrl: './event-organizator-homepage.component.css',
     imports: [FormsModule, CommonModule, HeaderComponent]
+   
 })
 export class EventOrganizatorHomepageComponent {
-  username = '';
+  
   password = '';
   firstName = '';
-  lastName = '';
+  //lastName = '';
   role = '';
-  dateOfBirth = '';
+  
   errorMessage = '';
   showModal = false;
+  eventDate = '';
+  eventName = '';
+  countries: string[] = ['Germany', 'Spain']; // Replace with your data
+  cities: string[] = [ 'Leverkusen', 'Barcelona']; // Replace with your data
+  country: string = '';
+  city: string = '';
+
 
   
   constructor(private router: Router) { }
@@ -52,4 +60,13 @@ export class EventOrganizatorHomepageComponent {
 
     this.router.navigate(['/eventOrganizatorReports']);
   }
+
+  hasValue(value: string): boolean {
+    return value !== ''; // Check if the value is not an empty string
+  }
+
+  allInputsFilled(): boolean {
+    return this.hasValue(this.eventName) && this.hasValue(this.eventDate) && this.hasValue(this.country) && this.hasValue(this.city);
+  }
+  
 }

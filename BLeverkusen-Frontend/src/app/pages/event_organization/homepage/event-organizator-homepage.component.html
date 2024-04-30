@@ -12,19 +12,53 @@
 
   <main class="flex-grow bg-white rounded-lg shadow-md px-16 py-9 my-0" style="padding-top: 15vh;">
     <div>
+      
+
       <div class="mb-4">
-        <input type="text" id="username" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 rounded-md w-1/4 px-3 py-2 border border-gray-300" [(ngModel)]="username" placeholder="Enter the event name">
-        <input type="date" id="birthdate" datepicker-format="mm/dd/yyyy" [(ngModel)]="dateOfBirth" class="w-1/20 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <label class="block text-sm font-medium text-gray-700 mb-2">Event name</label>
+
+        <input type="text" id="eventName" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 rounded-md w-1/4 px-3 py-2 border border-gray-300" [(ngModel)]="eventName" placeholder="Enter the event name">
 
       </div>
-       
-      <button type="submit" class="big-light-gray-button" (click)="hotels()">
+
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700 mb-2">Date of event</label>
+
+        <input type="date" id="eventDate" datepicker-format="mm/dd/yyyy" [(ngModel)]="eventDate" class="w-1/20 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700 mb-2">Country</label>
+
+        <div class="custom-dropdown">
+          <select [(ngModel)]="country" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 rounded-md w-2/3 px-3 py-2 border border-gray-300">
+            <option *ngFor="let name of countries" [value]="name" >
+              {{ name }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700 mb-2">City</label>
+
+        <div class="custom-dropdown">
+          <select [(ngModel)]="city" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 rounded-md w-2/3 px-3 py-2 border border-gray-300">
+            <option *ngFor="let name of cities" [value]="name">
+              {{ name }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <button type="submit" class="big-light-gray-button" (click)="hotels()" [disabled]="!allInputsFilled()">
         Hotels
       </button>
-      <button type="submit" class="big-light-gray-button ml-4" (click)="transport()">
+      <button type="submit" class="big-light-gray-button ml-4" (click)="transport()" [disabled]="!allInputsFilled()">
         Transports & Security
       </button>
-      <button type="submit" class="big-light-gray-button ml-4" (click)="playingFields()">
+      <button type="submit" class="big-light-gray-button ml-4" (click)="playingFields()" [disabled]="!allInputsFilled()">
         Playing fields
       </button>
       
