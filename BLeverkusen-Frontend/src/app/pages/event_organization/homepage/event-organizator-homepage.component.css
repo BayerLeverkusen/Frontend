@@ -69,3 +69,38 @@ body {
   
   
 }
+
+.dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  background-color: rgb(255, 255, 255);
+  padding: 20px;
+  border: 1px solid #a75151;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 10; /* Ensure it's above other elements */
+  display:table-row; /* Initially hidden */
+}
+
+.dialog.open {
+  /* Existing styles... */
+  backdrop-filter: blur(5px) grayscale(0.8); /* Adjust blur and grayscale as desired */
+}
+
+.close {
+  /* Style the close button */
+  width: 10%;
+  height: 10%;
+  background-color: #ffffff;
+  border: 1px solid #1f1f1f;
+  color: #1f1f1f;
+  padding: 16px;
+  border-radius: 8px;
+  margin-top: 16px;
+  margin-bottom: 24px;
+  
+  text-align: top;
+}

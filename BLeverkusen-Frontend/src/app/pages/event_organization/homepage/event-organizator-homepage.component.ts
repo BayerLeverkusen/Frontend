@@ -28,7 +28,15 @@ export class EventOrganizatorHomepageComponent {
   cities: string[] = [ 'Leverkusen', 'Barcelona']; // Replace with your data
   country: string = '';
   city: string = '';
+  isDialogOpen = false;
 
+  openDialog() {
+    this.isDialogOpen = true;
+  }
+
+  closeDialog() {
+    this.isDialogOpen = false;
+  }
 
   
   constructor(private router: Router) { }
@@ -43,7 +51,7 @@ export class EventOrganizatorHomepageComponent {
       event.preventDefault();
     }
 
-    this.router.navigate(['/eventOrganizatorReserveHotel']);
+   // this.router.navigate(['/eventOrganizatorReserveHotel']);
   }
 
   transport(event?: Event){
