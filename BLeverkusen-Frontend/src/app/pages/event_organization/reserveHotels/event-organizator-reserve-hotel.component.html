@@ -11,24 +11,7 @@
   <app-header class="fixed top-0 shadow-md w-full"></app-header>
 
   <main class="flex-grow bg-white rounded-lg shadow-md px-16 py-9 my-0" style="padding-top: 15vh;">
-    <div>
-      <div class="mb-4">
-        <input type="text" id="username" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 rounded-md w-1/4 px-3 py-2 border border-gray-300" [(ngModel)]="username" placeholder="Enter the event name">
-        <input type="date" id="birthdate" datepicker-format="mm/dd/yyyy" [(ngModel)]="dateOfBirth" class="w-1/20 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-
-      </div>
-       
-      <button type="submit" class="big-light-gray-button" (click)="hotels()">
-        Hotels
-      </button>
-      <button type="submit" class="big-light-gray-button ml-4" (click)="transport()">
-        Transports & Security
-      </button>
-      <button type="submit" class="big-light-gray-button ml-4" (click)="playingFields()">
-        Playing fields
-      </button>
-      
-    </div>
+    
   </main>
 
   <div *ngIf="showModal" id="popup-modal" tabindex="-1" class="flex overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">

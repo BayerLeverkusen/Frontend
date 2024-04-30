@@ -71,5 +71,15 @@ export class HeaderComponent {
     }
 
     this.router.navigate(['/eventOrganizatorReports']);
+
+    
+  }
+
+  home(event?: Event){
+    if (event) {
+      event.preventDefault();
+    }
+
+    this.router.navigate(['/eventOrganizatorHomePage']);
   }
 }
