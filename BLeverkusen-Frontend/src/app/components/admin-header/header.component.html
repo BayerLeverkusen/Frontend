@@ -1,21 +1,25 @@
 <div class="bg-white w-full py-2 px-4 flex justify-between items-center border-b border-gray-200 rounded-lg">
   <div class="flex items-center">
     <img src="assets/logo.png" alt="Logo" class="h-12 w-auto">
-    <p class="ml-4 text-red-600 text-2xl font-medium">Administrator dashboard</p>
+    <div class="ml-50 space-x-8">
+      <a (click)="routeForward(1)" routerLinkActive="active" class="ml-8 text-xl font-medium leading-6 text-gray-900 hover:text-gray-600active:text-red-600">{{link1}}</a>
+      <a (click)="routeForward(2)" routerLinkActive="active" class="ml-8 text-xl font-medium leading-6 text-gray-900 hover:text-gray-600 active:text-red-600">{{link2}}</a>
+      <a (click)="routeForward(3)" routerLinkActive="active" class="ml-8 text-xl font-medium leading-6 text-gray-900 hover:text-gray-600 active:text-red-600">{{link3}}</a>
+      <a (click)="routeForward(4)" routerLinkActive="active" class="ml-8 text-xl font-medium leading-6 text-gray-900 hover:text-gray-600 active:text-red-600">{{link4}}</a>
+      <a (click)="routeForward(5)" routerLinkActive="active" class="ml-8 text-xl font-medium leading-6 text-gray-900 hover:text-gray-600 active:text-red-600">{{link5}}</a>
+      <a (click)="routeForward(6)" routerLinkActive="active" class="ml-8 text-xl font-medium leading-6 text-gray-900 hover:text-gray-600 active:text-red-600">{{link6}}</a>
+      <a (click)="routeForward(7)" routerLinkActive="active" class="ml-8 text-xl font-medium leading-6 text-gray-900 hover:text-gray-600 active:text-red-600">{{link7}}</a>
+    </div>
   </div>
 
-  <div class="flex items-center">
-    <a (click)="addUser()" class="ml-4 text-1xl font-small">Add new employee</a>
-    <span class="vertical-line"></span>
-    <a (click)="viewUsers()" class="ml-2 text-1xl font-small">View all users</a>
-  </div>
-
+  <!-- Right upper corner -->
   <div class="flex items-center space-x-4 cursor-pointer">
     <img src="assets/bell.png" alt="Notifications" class="w-6">
-    <div class="w-14 h-14 rounded-full bg-gradient-to-b from-red-600 to-gray-800 flex justify-center items-center text-white text-3xl">A</div>
+    <div class="w-14 h-14 rounded-full bg-gradient-to-b from-red-600 to-gray-800 flex justify-center items-center text-white text-3xl">{{userInitial}}</div>
     <img (click)="toggleModal()" src="assets/chevron-down.png" alt="Expand" class="w-3">
   </div>
 
+  <!-- Modal -->
   <div *ngIf="showModal" class="absolute mt-10 top-7 right-1 bg-white w-40 h-32 z-50 shadow-lg rounded-lg overflow-auto">
     <div class="flex flex-col justify-center items-center h-full ">
       <button (click)="editProfile()" class="w-3/4 py-2 border border-gray-800 text-gray-800 rounded-md my-2">Edit Profile</button>
@@ -23,5 +27,3 @@
     </div>
   </div>
 </div>
-
-

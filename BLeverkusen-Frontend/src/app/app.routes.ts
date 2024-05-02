@@ -6,10 +6,14 @@ import { AdminAuthGuard } from './guards/admin-auth-guard';
 import { UserAuthGuard } from './guards/user-auth-guard';
 import { EditProfileComponent } from './pages/general/edit-profile/edit-profile/edit-profile.component';
 
+// Marketing Manager Imports
+import { ArticlesDashboardComponent } from './pages/marketing_manager/articles-dashboard/articles-dashboard.component';
+
 export const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full'},
     { path: 'login', component: LoginComponent},
     { path: 'adminHomePage', component: AdminHomepageComponent, canActivate: [AdminAuthGuard]},
     { path: 'adminViewAllUsers', component: AdminViewAllUsersComponent, canActivate: [AdminAuthGuard]},
-    { path: 'editProfile', component: EditProfileComponent, canActivate: [UserAuthGuard]}
+    { path: 'editProfile', component: EditProfileComponent, canActivate: [UserAuthGuard]},
+    { path: 'articlesDashboard', component: ArticlesDashboardComponent }
 ];

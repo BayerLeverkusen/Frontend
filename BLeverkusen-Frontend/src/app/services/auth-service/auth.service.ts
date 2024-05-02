@@ -40,9 +40,10 @@ export class AuthService {
     const token = this.getToken();
     if (token) {
       const decodedToken = this.jwtHelper.decodeToken(token);
-      return decodedToken.sub;
+      console.log(decodedToken.firstName);
+      return decodedToken.firstName;
     }
-    return null;
+    return '';
   }
 
   routeUserBasedOnRole(token: string) {
@@ -52,6 +53,9 @@ export class AuthService {
     switch (userRole) {
       case 'ADMIN':
         this.router.navigate(['/adminHomePage']);
+        break;
+      case 'SHOP_MANAGER':
+        this.router.navigate(['/articlesDashboard']);
         break;
       default:
         console.log("Nisi admin batoo");
