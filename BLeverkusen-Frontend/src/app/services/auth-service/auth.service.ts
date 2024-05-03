@@ -56,6 +56,9 @@ export class AuthService {
       case 'SHOP_MANAGER':
         this.router.navigate(['/articlesDashboard']);
         break;
+      case 'EVENT_ORGANIZATOR':
+        this.router.navigate(['/eventOrganizatorHomePage']);
+        break;
       default:
         console.log("Nisi admin batoo");
         break;
