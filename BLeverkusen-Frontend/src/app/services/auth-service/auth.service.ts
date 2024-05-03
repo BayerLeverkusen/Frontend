@@ -40,8 +40,7 @@ export class AuthService {
     const token = this.getToken();
     if (token) {
       const decodedToken = this.jwtHelper.decodeToken(token);
-      console.log(decodedToken.firstName);
-      return decodedToken.firstName;
+      return decodedToken.sub;
     }
     return '';
   }
