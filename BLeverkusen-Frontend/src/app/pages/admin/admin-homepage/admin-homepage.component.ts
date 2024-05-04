@@ -45,7 +45,7 @@ export class AdminHomepageComponent {
       error: (err) => {
           console.error('Registration failed:', err);
       }
-  });
+    });
   }
 
   hideModal() {
