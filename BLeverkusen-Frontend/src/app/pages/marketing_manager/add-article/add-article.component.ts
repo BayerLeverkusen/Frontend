@@ -3,6 +3,7 @@ import { ArticleService } from '../../../services/article-service/article-servic
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from "../../../components/admin-header/header.component";
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class AddArticleComponent {
   description = '';
   showModal = false;
 
-  constructor(private articleService: ArticleService) {}
+  constructor(private articleService: ArticleService, private router: Router) {}
 
   addA(event?: Event){
     if(event){
@@ -42,5 +43,7 @@ export class AddArticleComponent {
   }
   hideModal() {
     this.showModal = false;
+    this.router.navigate(['/articlesDashboard']);
+
   }
 }
