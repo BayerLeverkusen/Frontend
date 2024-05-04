@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add article</title>
+  </head>
+  <body class="m-0 p-0">
+    <div class="flex flex-col">
+      <!-- Header -->
+      <app-header
+        class="top-0 shadow-md w-full"
+        [link1]="'Shop'"
+        [route1]="'/articlesDashboard'"
+        [link2]="'Fan base'"
+        [route2]="'/'"
+      ></app-header>
+    </div>
+    <!-- White canvas -->
+    <main class="flex-grow bg-white rounded-lg shadow-md px-9 py-9 my-8 mx-8">
+      <h1 class="mb-2 text-5xl font-extrabold text-center">Edit an article</h1>
+      <h3 class="mb-8 text-xl text-center">
+        Fill in the form to put new values
+      </h3>
+      <!-- Name -->
+      <div class="flex justify-center items-center mb-4">
+        <label for="name" class="block text-lg font-medium text-gray-700 mr-4"
+          >Name</label
+        >
+        <input
+          type="text"
+          id="name"
+          class="focus:ring-neutral-200 focus:border-neutral-200 border border-neutral-300 rounded-md w-1/5 px-3 py-2"
+          [(ngModel)]="name"
+          placeholder="Enter new article name"
+        />
+      </div>
+
+      <!-- Price -->
+      <div class="flex justify-center items-center mb-4">
+        <label for="price" class="block text-lg font-medium text-gray-700 mr-4"
+          >Price</label
+        >
+        <input
+          type="text"
+          id="price"
+          class="focus:ring-neutral-200 focus:border-neutral-200 border border-neutral-300 rounded-md w-1/5 px-3 py-2"
+          [(ngModel)]="price"
+          placeholder="Enter new article price"
+        />
+      </div>
+
+      <!-- Description  -->
+      <div class="flex justify-center items-center mb-4">
+        <label
+          for="description"
+          class="block text-lg font-medium text-gray-700 mr-4 -ml-10"
+          >Description</label
+        >
+        <input
+          type="text"
+          id="description"
+          class="focus:ring-neutral-200 focus:border-neutral-200 border border-neutral-300 rounded-md w-1/5 px-3 py-8"
+          [(ngModel)]="description"
+          placeholder="Enter new article description"
+        />
+      </div>
+
+      <!-- Button  -->
+      <div class="flex justify-center items-center mb-4">
+        <button
+          (click)="editArticle()"
+          type="submit"
+          class="bg-neutral-900 text-white w-1/5 ml-14 py-3 rounded-lg hover:bg-green-500"
+        >
+          Edit an article
+        </button>
+      </div>
+
+      <!-- Sucessfully editted article modal -->
+      <div
+        *ngIf="showModal"
+        id="popup-modal"
+        tabindex="-1"
+        class="flex fixed z-50 justify-center items-center md:inset-0 h-[calc(100%-1rem)] max-h-full"
+      >
+        <!-- Semi-transparent overlay -->
+        <div class="absolute inset-0 bg-black opacity-70"></div>
+
+        <!-- Modal -->
+        <div
+          class="relative bg-white rounded-2xl shadow-2xl text-center py-8 px-16"
+        >
+          <!-- Ellipse + icon -->
+          <div id="circleandicon" class="flex justify-center mb-8 relative">
+            <div id="circle" class="w-20 h-20 bg-green-100 rounded-full"></div>
+            <svg
+              id="icon"
+              class="mt-2 mr-2 absolute items-center text-green-600 w-12 h-12"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 20 20"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+          </div>
+
+          <h3 class="mb-4 text-xl font-semibold text-black">
+            Artice editted successfully!
+          </h3>
+
+          <button
+            (click)="hideModal()"
+            type="button"
+            class="py-2.5 px-3 text-sm font-semibold text-neutral-800 rounded-lg border border-neutral-800 hover:bg-neutral-800 hover:text-white"
+          >
+            Got it!
+          </button>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

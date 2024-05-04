@@ -10,15 +10,16 @@ export class ArticleService {
   private articlesUrl = 'http://localhost:8083/api/marketingmanager/articles'; // Assuming this is the correct endpoint for getting all articles
   private editArticleUrl = 'http://localhost:8083/api/marketingmanager/articles'; // Assuming this is the correct endpoint for editing an article
   private deleteArticleUrl = 'http://localhost:8083/api/marketingmanager/articles'; // Assuming this is the correct endpoint for deleting an article
-
+  
   constructor(private http: HttpClient) { }
 
   getAllArticles(): Observable<Article[]> {
     return this.http.get<Article[]>(this.articlesUrl);
   }
 
-  editArticle(article: Article): Observable<any> {
-    return this.http.put(this.editArticleUrl, article);
+  editArticle(id: number, updatedArticleData: any): Observable<any> {
+    const url = `${this.articlesUrl}/${id}`;
+    return this.http.put(url, updatedArticleData);
   }
 
   deleteArticle(id: number): Observable<any> {
