@@ -4,9 +4,11 @@ import { AdminHomepageComponent } from './pages/admin/admin-homepage/admin-homep
 import { AdminViewAllUsersComponent } from './pages/admin/admin-view-all-users/admin-view-all-users.component';
 import { AdminAuthGuard } from './guards/admin-auth-guard';
 import { UserAuthGuard } from './guards/user-auth-guard';
+import { HeadCoachAuthGuard } from './guards/headCoach-auth-guard';
 import { EditProfileComponent } from './pages/general/edit-profile/edit-profile/edit-profile.component';
 import { EventOrganizatorHomepageComponent } from './pages/event_organization/homepage/event-organizator-homepage.component';
 import { EventOrganizatorReserveHotelComponent } from './pages/event_organization/reserveHotels/event-organizator-reserve-hotel.component';
+import { CreateTrainingComponent } from './pages/sport_managment/training/create-training/create-training.component';
 
 // Marketing Manager Imports
 import { ArticlesDashboardComponent } from './pages/marketing_manager/articles-dashboard/articles-dashboard.component';
@@ -19,5 +21,6 @@ export const routes: Routes = [
     { path: 'editProfile', component: EditProfileComponent, canActivate: [UserAuthGuard]},
     { path: 'articlesDashboard', component: ArticlesDashboardComponent },
     { path: 'eventOrganizatorHomePage', component: EventOrganizatorHomepageComponent, canActivate: [UserAuthGuard]},
-    { path: 'eventOrganizatorReserveHotel', component: EventOrganizatorReserveHotelComponent, canActivate: [UserAuthGuard]}
+    { path: 'eventOrganizatorReserveHotel', component: EventOrganizatorReserveHotelComponent, canActivate: [UserAuthGuard]},
+    { path: 'createTraining', component: CreateTrainingComponent, canActivate: [HeadCoachAuthGuard]}
 ];

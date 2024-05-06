@@ -1,0 +1,62 @@
+<div class="-mx-4">
+  <div class="overflow-x-auto">
+    <div class="py-2 align-middle inline-block min-w-full">
+      <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Name</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nationality</th> 
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            <tr *ngFor="let player of players" class="hover:bg-gray-100">
+              <td class="px-6 py-4 whitespace-nowrap">
+                <img *ngIf="player.lastName === 'Hradecky'" src="assets/players/hradecky.png" alt="Hradecky" width="60" height="60" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.lastName === 'Kovar'" src="assets/players/kovar.png" alt="Kovar" width="60" height="60" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.lastName === 'Frimpong'" src="assets/players/frimpong.png" alt="Frimpong" width="60" height="60" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.lastName === 'Grimaldo'" src="assets/players/grimaldo.png" alt="Grimaldo" width="60" height="60" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.lastName === 'Hincapie'" src="assets/players/hincapie.png" alt="Hincapie" width="60" height="60" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.lastName === 'Kossounou'" src="assets/players/kossounou.png" alt="Kossounou" width="60" height="60" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.lastName === 'Stanisic'" src="assets/players/stanisic.png" alt="Stanisic" width="60" height="60" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.lastName === 'Tah'" src="assets/players/tah.png" alt="Tah" width="60" height="60" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.lastName === 'Tapsoba'" src="assets/players/tapsoba.png" alt="Tapsoba" width="60" height="60" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.lastName === 'Adli'" src="assets/players/adli.png" alt="Adli" width="60" height="60" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.lastName === 'Andrich'" src="assets/players/andrich.png" alt="Andrich" width="60" height="60" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.lastName === 'Palacios'" src="assets/players/palacios.png" alt="Palacios" width="60" height="60" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.lastName === 'Tella'" src="assets/players/tella.png" alt="Tella" width="60" height="60" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.lastName === 'Wirtz'" src="assets/players/wirtz.png" alt="Wirtz" width="60" height="60" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.lastName === 'Xhaka'" src="assets/players/xhaka.png" alt="Xhaka" width="60" height="60" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.lastName === 'Boniface'" src="assets/players/boniface.png" alt="Boniface" width="60" height="60" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.lastName === 'Hlozek'" src="assets/players/hlozek.png" alt="Hlozek" width="60" height="60" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.lastName === 'Hofmann'" src="assets/players/hofmann.png" alt="Hofmann" width="60" height="60" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.lastName === 'Iglesias'" src="assets/players/iglesias.png" alt="Iglesias" width="60" height="60" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.lastName === 'Schick'" src="assets/players/schick.png" alt="Schick" width="60" height="60" style="display: block; margin: 0 auto;">
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">{{ player.name }}</td>
+              <td class="px-6 py-4 whitespace-nowrap">{{ player.lastName }}</td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <img *ngIf="player.nationality === 'Nigeria'" src="assets/flags/nigeria.png" alt="Nigeria Flag" width="20" height="20" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.nationality === 'Czech Republic'" src="assets/flags/czech.png" alt="Czech Republic Flag" width="20" height="20" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.nationality === 'Netherlands'" src="assets/flags/netherlands.png" alt="Netherlands Flag" width="20" height="20" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.nationality === 'Spain'" src="assets/flags/spain.png" alt="Spain Flag" width="20" height="20" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.nationality === 'Ecuador'" src="assets/flags/ecuador.png" alt="Ecuador Flag" width="20" height="20" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.nationality === 'Ivory Coast'" src="assets/flags/ivory_coast.png" alt="Ivory Coast Flag" width="20" height="20" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.nationality === 'Croatia'" src="assets/flags/croatia.png" alt="Croatia Flag" width="20" height="20" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.nationality === 'Germany'" src="assets/flags/germany.png" alt="Germany Flag" width="20" height="20" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.nationality === 'Burkina Faso'" src="assets/flags/burkina_faso.png" alt="Burkina Faso Flag" width="20" height="20" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.nationality === 'Morocco'" src="assets/flags/morocco.png" alt="Morocco Flag" width="20" height="20" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.nationality === 'Argentina'" src="assets/flags/argentina.png" alt="Argentina Flag" width="20" height="20" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.nationality === 'Switzerland'" src="assets/flags/switzerland.png" alt="Switzerland Flag" width="20" height="20" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.nationality === 'Finland'" src="assets/flags/finland.png" alt="Finland Flag" width="20" height="20" style="display: block; margin: 0 auto;">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
