@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from "../../../components/event-organizator-header/header.component";
 import { AuthService } from '../../../services/auth-service/auth.service';
+import { HotleServiceService } from '../../../services/eventOrganizationService/hotelService/hotle-service.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,9 +12,11 @@ import { Router } from '@angular/router';
     templateUrl: './event-organizator-homepage.component.html',
     styleUrl: './event-organizator-homepage.component.css',
     imports: [FormsModule, CommonModule, HeaderComponent]
+    
    
 })
 export class EventOrganizatorHomepageComponent {
+  
   
   password = '';
   firstName = '';
@@ -30,8 +33,16 @@ export class EventOrganizatorHomepageComponent {
   city: string = '';
   isDialogOpen = false;
 
+  credentials = {
+    city: this.city,
+    country: this.country
+  };
+
+  constructor(private hotleService: HotleServiceService) { }
+
   openDialog() {
     this.isDialogOpen = true;
+    this.hotleService.getHotels(this.city).subscribe();
   }
 
   closeDialog() {
@@ -39,7 +50,7 @@ export class EventOrganizatorHomepageComponent {
   }
 
   
-  constructor(private router: Router) { }
+  
   
 
   hideModal() {
@@ -59,14 +70,14 @@ export class EventOrganizatorHomepageComponent {
       event.preventDefault();
     }
 
-    this.router.navigate(['/eventOrganizatorReports']);
+    //this.router.navigate(['/eventOrganizatorReports']);
   }
   playingFields(event?: Event){
     if (event) {
       event.preventDefault();
     }
 
-    this.router.navigate(['/eventOrganizatorReports']);
+    //this.router.navigate(['/eventOrganizatorReports']);
   }
 
   hasValue(value: string): boolean {
