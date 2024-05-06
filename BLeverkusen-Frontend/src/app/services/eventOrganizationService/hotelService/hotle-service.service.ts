@@ -11,11 +11,10 @@ export class HotleServiceService {
 
   constructor(private http: HttpClient) {}
 
-  getHotels(city:string): Observable<Hotel[]> {
-    let queryParams = {} as { [key: string]: string | string[] };
-    queryParams['city'] = city; // Set the city query parameter
+  getHotels(city: string): Observable<Hotel[]> {
+    const queryParams = { city }; // Create query parameter object
+    return this.http.get<Hotel[]>(this.apiUrl + '?' + new URLSearchParams(queryParams));
 
-    return this.http.get<Hotel[]>(this.apiUrl, { params: queryParams });
   }
   
 }
