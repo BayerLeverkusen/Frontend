@@ -13,7 +13,7 @@
   <main class="flex-grow bg-white rounded-lg shadow-md px-16 py-9 my-0" style="padding-top: 15vh;">
     <div>
       
-      <div class="dialog hidden" *ngIf="isDialogOpen">
+      <div class="dialog hidden" *ngIf="isDialogOpen" style="overflow-y: auto;">
         <p>Search for hotels based on your criteria!</p>
         <div *ngIf="isDialogOpen">
           <h2>Hotels in {{ city }}</h2>
