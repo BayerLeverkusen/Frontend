@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from "../../../components/event-organizator-header/header.component";
 import { AuthService } from '../../../services/auth-service/auth.service';
 import { HotleServiceService } from '../../../services/eventOrganizationService/hotelService/hotle-service.service';
 import { Router } from '@angular/router';
+import { Hotel } from '../../../models/hotel';
 
 @Component({
     selector: 'app-event-organizator-homepage',
@@ -33,6 +34,8 @@ export class EventOrganizatorHomepageComponent {
   city: string = '';
   isDialogOpen = false;
 
+  hotels: Hotel[] = [];
+  
   credentials = {
     city: this.city,
     country: this.country
@@ -40,10 +43,19 @@ export class EventOrganizatorHomepageComponent {
 
   constructor(private hotleService: HotleServiceService) { }
 
+  reserveHotel() {
+    
+  }
+
   openDialog() {
     this.isDialogOpen = true;
-    this.hotleService.getHotels(this.city).subscribe();
+    this.hotleService.getHotels(this.city).subscribe({
+      next: (hotels) => this.hotels = hotels,
+      error: (err) => console.error('Failed to get users:', err)
+    });
   }
+
+  
 
   closeDialog() {
     this.isDialogOpen = false;
@@ -57,7 +69,7 @@ export class EventOrganizatorHomepageComponent {
     this.showModal = false;
   }
 
-  hotels(event?: Event){
+  hotel(event?: Event){
     if (event) {
       event.preventDefault();
     }

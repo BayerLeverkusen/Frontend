@@ -1,9 +1,9 @@
 export interface Hotel {
-    name: string;
-    city: string;
-    country: string;
-    price: number;
-    rating: number;
+    hotelName: string;
+    hotelCity: string;
+    hotelCountry: string;
+    hotelPrice: number;
+    hotelRating: number;
     
   }
   
