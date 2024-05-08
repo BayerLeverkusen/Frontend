@@ -26,7 +26,8 @@ export class EventOrganizatorHomepageComponent {
   
   errorMessage = '';
   showModal = false;
-  eventDate = '';
+  startDate = '';
+  endDate = '';
   eventName = '';
   countries: string[] = ['Germany', 'Spain']; // Replace with your data
   cities: string[] = [ 'Leverkusen', 'Barcelona']; // Replace with your data
@@ -97,7 +98,7 @@ export class EventOrganizatorHomepageComponent {
   }
 
   allInputsFilled(): boolean {
-    return this.hasValue(this.eventName) && this.hasValue(this.eventDate) && this.hasValue(this.country) && this.hasValue(this.city);
+    return this.hasValue(this.eventName) && this.hasValue(this.startDate) && this.hasValue(this.endDate) && this.hasValue(this.country) && this.hasValue(this.city);
   }
   
 }
