@@ -46,7 +46,7 @@ export class HeaderComponent {
       event.preventDefault();
     }
 
-    this.router.navigate(['/eventOrganizatorCreateEvent']);
+    this.router.navigate(['/eventOrganizatorReserveHotel']);
   }
 
   createTemplate(event?: Event){
