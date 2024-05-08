@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Budget request</title>
+</head>
+<body class="m-0 p-0">
+  <div class="flex flex-col ">
+    <!-- Header -->
+    <app-header class="top-0 shadow-md w-full"
+    [link1]="'Budget proposal creation'" [route1]="'/directorCreateProposal'"
+    [link2]="'Budget overview'" [route2]="'/'"></app-header>
+
+    <div class="min-h-screen flex items-center justify-center">
+      <div class="max-w-md w-full p-6 bg-white rounded-lg shadow-lg">
+
+        <h1 class="text-2xl font-semibold text-center text-black-500 mt-8 mb-6">Budget proposal</h1>
+        <form>
+          <div class="mb-4">
+            <label  class="block mb-2 text-sm text-gray-600">Sports management</label>
+            <input type="number" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Enter ammount" [(ngModel)]="sportingAmmount" [ngModelOptions]="{ standalone: true }">
+          </div>
+          <div class="mb-4">
+            <label  class="block mb-2 text-sm text-gray-600">Shop management</label>
+            <input type="number" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Enter ammount" [(ngModel)]="marketingAmmount" [ngModelOptions]="{ standalone: true }">
+          </div>
+          <div class="mb-4">
+            <label  class="block mb-2 text-sm text-gray-600">Event organization</label>
+            <input type="number" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Enter ammount" [(ngModel)]="eventOrgAmmount" [ngModelOptions]="{ standalone: true }">
+          </div>
+          <form (ngSubmit)="createProposal()">
+          <button type="submit" class="w-32 bg-gradient-to-r from-red-700 to-red-900 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 mb-2">Create</button>
+          </form>
+        </form>
+
+      </div>
+    </div>
+
+    <div *ngIf="showModal" id="popup-modal" tabindex="-1" class="flex overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+      <div class="relative p-4 w-full max-w-md max-h-full">
+          <div class="relative bg-white rounded-lg shadow dark:bg-black-700 border border-black border-2">
+              <div class="p-4 md:p-5 text-center">
+                  <svg class="mx-auto mb-4 text-green-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  <h3 class="mb-5 text-lg font-normal text-black-500 dark:text-gray-400">Budget proposition succesfully created!</h3>
+                  <button (click)="hideModal()" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Got it!</button>
+              </div>
+          </div>
+      </div>
+    </div>
+
+  </div>
+
+  
+
+</body>
+</html>
+
