@@ -13,6 +13,7 @@ import { PlayerService } from '../../services/player-service/player.service';
 })
 export class PlayerListComponent implements OnInit {
   players: Player[] = [];
+  selectedPlayerIds: number[] = [];
 
   constructor(private playerService: PlayerService) {}
 
@@ -21,6 +22,21 @@ export class PlayerListComponent implements OnInit {
       next: (players) => this.players = players,
       error: (err) => console.error('Failed to get players:', err)
     });
+  }
+
+  togglePlayerSelection(playerId: number): void {
+    const index = this.selectedPlayerIds.indexOf(playerId);
+    if (index === -1) {
+      this.selectedPlayerIds.push(playerId);
+      this.playerService.selectedPlayerIds.push(playerId);
+    } else {
+      this.selectedPlayerIds.splice(index,1);
+      this.playerService.selectedPlayerIds.splice(index, 1);
+    }
+  }
+
+  isSelected(playerId: number): boolean {
+    return this.selectedPlayerIds.includes(playerId);
   }
 
 }

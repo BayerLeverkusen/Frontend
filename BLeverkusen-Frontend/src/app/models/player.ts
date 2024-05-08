@@ -3,5 +3,6 @@ export interface Player {
     name: string;
     lastName: string;
     nationality: string;
+    positions: Set<string>;
   }
   

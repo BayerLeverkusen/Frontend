@@ -10,6 +10,8 @@ import { Observable } from 'rxjs';
 export class PlayerService {
   private playersUrl = 'http://localhost:8084/api/player/getAll';
 
+  selectedPlayerIds: number[] = [];
+
 
   constructor(
     private http: HttpClient,

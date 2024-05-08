@@ -1,0 +1,34 @@
+<div *ngIf="clubFacilities.length > 0">
+    <div class="overflow-x-auto">
+        <div class="py-2 align-middle inline-block min-w-full">
+          <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">Name</th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">Type</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                <tr *ngFor="let facility of clubFacilities" [style.background-color]="isSelected(facility.id) ? 'lightblue' : 'inherit'" class="hover:bg-gray-100" (click)="toggleFacilitySelection(facility.id)">
+                  <td class="px-6 py-4 whitespace-nowrap text-center">{{ facility.name }}</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-center">{{ facility.type }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+</div>
+<div *ngIf="clubFacilities.length === 0">
+    <p>No club facilities found for the selected type.</p>
+</div>
+
+
+
+<!-- <h3>Club Facilities:</h3>
+    <ul>
+        <li *ngFor="let facility of clubFacilities">
+        {{ facility.name }} - {{ facility.type }}
+        </li>
+    </ul> -->

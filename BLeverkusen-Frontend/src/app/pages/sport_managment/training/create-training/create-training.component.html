@@ -12,14 +12,14 @@
     [link1]="'Trainings'" [route1]="'/createTraining'">
     </app-header>
 
-    <div class="flex flex-col flex-grow items-center justify-center bg-white rounded-lg shadow-md px-16 py-9 my-0" style="padding-top: 15vh;">
-        <div class="relative" >
+    <div style="display: grid; grid-template-rows: auto auto; grid-template-columns: auto auto; width: full; padding-top: 15vh;">
+        <div style="margin-left: 10vw;  padding: 20px; text-align: center; grid-row:1; grid-column:1;">
             <div class="flex flex-col items-center justify-center">
-                <label class="text-1xl mb-2">
+                <label class="text-2xl mb-2">
                     Type
                 </label>
                 <button (click)="toggleDropdown()" id="dropdownInformationButton" data-dropdown-toggle="dropdownInformation" class="text-black bg-white border hover:text-white hover:bg-neutral-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-                    {{ type ? type : 'Select training type' }} 
+                    {{ selectedType ? selectedType : 'Select training type' }} 
                     <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
                     </svg>
@@ -27,16 +27,16 @@
                 <div id="dropdownInformation" [class.hidden]="!isDropdownOpen" class="hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
                     <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownInformationButton">
                         <li>
-                            <label (click)="type = 'Endurance Training'; toggleDropdown()" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer text-center">Endurance training</label>
+                            <label (click)="selectType('Endurance training'); toggleDropdown()" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer text-center">Endurance training</label>
                         </li>
                         <li>
-                            <label (click)="type = 'Shooting Drill'; toggleDropdown()" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer text-center">Shooting drill</label>
+                            <label (click)="selectType('Shooting drill'); toggleDropdown()" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer text-center">Shooting drill</label>
                         </li>
                         <li>
-                            <label (click)="type = 'Tactical Training'; toggleDropdown()" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer text-center">Tactical training</label>
+                            <label (click)="selectType('Tactical training'); toggleDropdown()" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer text-center">Tactical training</label>
                         </li>
                         <li>
-                            <label (click)="type = 'Recovery Session'; toggleDropdown()" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer text-center">Recovery session</label>
+                            <label (click)="selectType('Recovery session'); toggleDropdown()" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer text-center">Recovery session</label>
                         </li>
                     </ul>
                     <div class="px-4 py-3 text-sm text-gray-900 dark:text-white flex items-center justify-center">
@@ -44,18 +44,22 @@
                     </div>
                 </div>
             </div>
-        
+        </div>
+
+        <div style="margin-left: 10vw; text-align: center; grid-row:2; grid-column:1;">
             <div class="flex justify-center items-center mt-10">
-                <label class="text-1xl mb-2">
+                <label class="text-2xl mb-2">
                     Date
                 </label>
             </div>
             <div class="flex justify-center items-center">
                 <input datepicker-autohide datepicker-format="mm/dd/yyyy" datepicker-orientation="left" [(ngModel)]="selectedDate" type="date" class="text-center w-full sm:max-w-[15rem] border border-gray-200 dark:border-gray-800 py-2 px-4 rounded-lg mb-2">
             </div>
-        
-            <div class="flex justify-center items-center mt-10">
-                <label class="text-1xl">
+        </div>
+
+        <div style="margin-right: 15vw; padding: 20px; text-align: center; grid-row:1/span 2; grid-column:2;">
+            <div class="flex justify-center items-center">
+                <label class="text-2xl">
                     Time
                 </label>
             </div>
@@ -151,21 +155,33 @@
                     </div>
                 </div>
             </div>
-            
-            <div class="flex justify-center items-center mt-10">
-                <label class="text-1xl mb-2">
-                    Pick which players will attend the training
-                </label>
-            </div>
-            <div class="relative">
-                <app-player-list></app-player-list>
-            </div>
-
         </div>
-        
 
-    </div>
+        <div style="padding: 40px; text-align: center; grid-row: 3; grid-column: 1 / span 2;">
+            <div class="flex-col justify-center items-center mt-10">
+                <label class="text-2xl">
+                    Select the room where the training will be held
+                </label>
+                <app-club-facilities-list/>              
+            </div>
+        </div>
 
+        <div style="padding: 40px; text-align: center; grid-row: 4; grid-column: 1 / span 2;">
+            <div class="flex-col justify-center items-center mt-10">
+                <label class="text-2xl">
+                    Select which players will attend the training
+                </label>                
+                <app-player-list/>
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+            <button (click)="createTraining()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-5">
+                Create Training
+            </button>
+        </div>
+
+    </div>  
 </body>
 </html>
 

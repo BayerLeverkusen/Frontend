@@ -1,18 +1,18 @@
-<div class="-mx-4">
+<div class="">
   <div class="overflow-x-auto">
     <div class="py-2 align-middle inline-block min-w-full">
       <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
         <table class="min-w-full divide-y divide-gray-200">
           <thead class="bg-gray-50">
             <tr>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Name</th>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nationality</th> 
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center"></th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">Name</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">Last Name</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">Nationality</th> 
             </tr>
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
-            <tr *ngFor="let player of players" class="hover:bg-gray-100">
+            <tr *ngFor="let player of players" [style.background-color]="isSelected(player.id) ? 'lightblue' : 'inherit'" class="hover:bg-gray-100" (click)="togglePlayerSelection(player.id)">
               <td class="px-6 py-4 whitespace-nowrap">
                 <img *ngIf="player.lastName === 'Hradecky'" src="assets/players/hradecky.png" alt="Hradecky" width="60" height="60" style="display: block; margin: 0 auto;">
                 <img *ngIf="player.lastName === 'Kovar'" src="assets/players/kovar.png" alt="Kovar" width="60" height="60" style="display: block; margin: 0 auto;">
@@ -34,23 +34,25 @@
                 <img *ngIf="player.lastName === 'Hofmann'" src="assets/players/hofmann.png" alt="Hofmann" width="60" height="60" style="display: block; margin: 0 auto;">
                 <img *ngIf="player.lastName === 'Iglesias'" src="assets/players/iglesias.png" alt="Iglesias" width="60" height="60" style="display: block; margin: 0 auto;">
                 <img *ngIf="player.lastName === 'Schick'" src="assets/players/schick.png" alt="Schick" width="60" height="60" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.lastName === 'Design'" src="assets/players/ifeel.png" alt="Ifeelaric" width="60" height="60" style="display: block; margin: 0 auto;">
               </td>
-              <td class="px-6 py-4 whitespace-nowrap">{{ player.name }}</td>
-              <td class="px-6 py-4 whitespace-nowrap">{{ player.lastName }}</td>
+              <td class="px-6 py-4 whitespace-nowrap text-center">{{ player.name }}</td>
+              <td class="px-6 py-4 whitespace-nowrap text-center">{{ player.lastName }}</td>
               <td class="px-6 py-4 whitespace-nowrap">
-                <img *ngIf="player.nationality === 'Nigeria'" src="assets/flags/nigeria.png" alt="Nigeria Flag" width="20" height="20" style="display: block; margin: 0 auto;">
-                <img *ngIf="player.nationality === 'Czech Republic'" src="assets/flags/czech.png" alt="Czech Republic Flag" width="20" height="20" style="display: block; margin: 0 auto;">
-                <img *ngIf="player.nationality === 'Netherlands'" src="assets/flags/netherlands.png" alt="Netherlands Flag" width="20" height="20" style="display: block; margin: 0 auto;">
-                <img *ngIf="player.nationality === 'Spain'" src="assets/flags/spain.png" alt="Spain Flag" width="20" height="20" style="display: block; margin: 0 auto;">
-                <img *ngIf="player.nationality === 'Ecuador'" src="assets/flags/ecuador.png" alt="Ecuador Flag" width="20" height="20" style="display: block; margin: 0 auto;">
-                <img *ngIf="player.nationality === 'Ivory Coast'" src="assets/flags/ivory_coast.png" alt="Ivory Coast Flag" width="20" height="20" style="display: block; margin: 0 auto;">
-                <img *ngIf="player.nationality === 'Croatia'" src="assets/flags/croatia.png" alt="Croatia Flag" width="20" height="20" style="display: block; margin: 0 auto;">
-                <img *ngIf="player.nationality === 'Germany'" src="assets/flags/germany.png" alt="Germany Flag" width="20" height="20" style="display: block; margin: 0 auto;">
-                <img *ngIf="player.nationality === 'Burkina Faso'" src="assets/flags/burkina_faso.png" alt="Burkina Faso Flag" width="20" height="20" style="display: block; margin: 0 auto;">
-                <img *ngIf="player.nationality === 'Morocco'" src="assets/flags/morocco.png" alt="Morocco Flag" width="20" height="20" style="display: block; margin: 0 auto;">
-                <img *ngIf="player.nationality === 'Argentina'" src="assets/flags/argentina.png" alt="Argentina Flag" width="20" height="20" style="display: block; margin: 0 auto;">
-                <img *ngIf="player.nationality === 'Switzerland'" src="assets/flags/switzerland.png" alt="Switzerland Flag" width="20" height="20" style="display: block; margin: 0 auto;">
-                <img *ngIf="player.nationality === 'Finland'" src="assets/flags/finland.png" alt="Finland Flag" width="20" height="20" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.nationality === 'Nigeria'" src="assets/flags/nigeria.png" alt="Nigeria Flag" width="30" height="30" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.nationality === 'Czech Republic'" src="assets/flags/czech.png" alt="Czech Republic Flag" width="30" height="30" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.nationality === 'Netherlands'" src="assets/flags/netherlands.png" alt="Netherlands Flag" width="30" height="30" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.nationality === 'Spain'" src="assets/flags/spain.png" alt="Spain Flag" width="30" height="30" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.nationality === 'Ecuador'" src="assets/flags/ecuador.png" alt="Ecuador Flag" width="30" height="30" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.nationality === 'Ivory Coast'" src="assets/flags/ivory_coast.png" alt="Ivory Coast Flag" width="30" height="30" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.nationality === 'Croatia'" src="assets/flags/croatia.png" alt="Croatia Flag" width="30" height="30" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.nationality === 'Germany'" src="assets/flags/germany.png" alt="Germany Flag" width="30" height="30" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.nationality === 'Burkina Faso'" src="assets/flags/burkina_faso.png" alt="Burkina Faso Flag" width="30" height="30" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.nationality === 'Morocco'" src="assets/flags/morocco.png" alt="Morocco Flag" width="30" height="30" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.nationality === 'Argentina'" src="assets/flags/argentina.png" alt="Argentina Flag" width="30" height="30" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.nationality === 'Switzerland'" src="assets/flags/switzerland.png" alt="Switzerland Flag" width="30" height="30" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.nationality === 'Finland'" src="assets/flags/finland.png" alt="Finland Flag" width="30" height="30" style="display: block; margin: 0 auto;">
+                <img *ngIf="player.nationality === 'Serbia'" src="assets/flags/serbia.png" alt="Serbia Flag" width="30" height="30" style="display: block; margin: 0 auto;">
               </td>
             </tr>
           </tbody>
