@@ -14,7 +14,8 @@ export class ClubFacilityService {
   private _selectedTypeSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
   selectedType$: Observable<string> = this._selectedTypeSubject.asObservable();
 
-  selectedClubFacilityId: number = -1;
+  private _selectedClubFacilityIdSubject: BehaviorSubject<number> = new BehaviorSubject<number>(-1);
+  selectedClubFacilityId$: Observable<number> = this._selectedClubFacilityIdSubject.asObservable();
 
   get selectedType(): string {
     return this._selectedTypeSubject.value;
@@ -22,6 +23,14 @@ export class ClubFacilityService {
 
   set selectedType(type: string) {
     this._selectedTypeSubject.next(type);
+  }
+
+  get selectedClubFacilityId(): number {
+    return this._selectedClubFacilityIdSubject.value;
+  }
+
+  set selectedClubFacilityId(id: number) {
+    this._selectedClubFacilityIdSubject.next(id);
   }
 
   constructor(

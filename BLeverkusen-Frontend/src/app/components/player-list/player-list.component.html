@@ -12,7 +12,11 @@
             </tr>
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
-            <tr *ngFor="let player of players" [style.background-color]="isSelected(player.id) ? 'lightblue' : 'inherit'" class="hover:bg-gray-100" (click)="togglePlayerSelection(player.id)">
+            <tr *ngFor="let player of players" 
+                [style.background-color]="isSelected(player.id) ? 'lightblue' : (player.injured ? 'rgba(255, 232, 232, 0.5)' : 'inherit')"
+                class="hover:bg-gray-100"
+                [style.cursor]="player.injured ? 'not-allowed' : 'pointer'" 
+                (click)="player.injured ? null : togglePlayerSelection(player.id)">
               <td class="px-6 py-4 whitespace-nowrap">
                 <img *ngIf="player.lastName === 'Hradecky'" src="assets/players/hradecky.png" alt="Hradecky" width="60" height="60" style="display: block; margin: 0 auto;">
                 <img *ngIf="player.lastName === 'Kovar'" src="assets/players/kovar.png" alt="Kovar" width="60" height="60" style="display: block; margin: 0 auto;">

@@ -24,3 +24,8 @@ a {
     cursor: pointer;
 }
 
+.disabled-slot {
+    opacity: 0.3;
+    pointer-events: none; 
+}
+

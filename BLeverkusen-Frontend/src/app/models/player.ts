@@ -4,5 +4,6 @@ export interface Player {
     lastName: string;
     nationality: string;
     positions: Set<string>;
+    injured: boolean;
   }
   

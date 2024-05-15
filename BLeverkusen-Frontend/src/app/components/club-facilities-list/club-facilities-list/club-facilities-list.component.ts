@@ -24,10 +24,12 @@ export class ClubFacilitiesListComponent implements OnInit {
   }
 
   fetchClubFacilities() {
-    this.clubFacilityService.getEligibleClubFacilitiesByTrainingType(this.clubFacilityService.selectedType).subscribe(
-      (clubFacilities) => this.clubFacilities = clubFacilities,
-      (err) => console.error('Failed to get club facilities:', err)
-    );
+    if (this.clubFacilityService.selectedType) {
+      this.clubFacilityService.getEligibleClubFacilitiesByTrainingType(this.clubFacilityService.selectedType).subscribe(
+          (clubFacilities) => this.clubFacilities = clubFacilities,
+          (err) => console.error('Failed to get club facilities:', err)
+      );
+  }
   }
 
   toggleFacilitySelection(facilityId: number): void {
