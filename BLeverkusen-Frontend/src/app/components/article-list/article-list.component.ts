@@ -14,6 +14,9 @@ import { Router } from '@angular/router';
 })
 export class ArticleListComponent implements OnInit{
   articles: Article[] = [];
+  showModal = false;
+  delete_boolean = false; 
+  id_final : number | null = null; 
   private articlesUrl = 'http://localhost:8083/api/marketingmanager/articles';
 
   constructor(private router: Router, private articleService: ArticleService, private editArticleComponent: EditArticleComponent) {}
@@ -25,14 +28,9 @@ export class ArticleListComponent implements OnInit{
     });
   }
 
-  deleteArticle(id: number): void {
-    this.articleService.deleteArticle(id).subscribe({
-      next: () => {
-        console.log('Article deleted successfully');
-        this.articles = this.articles.filter(article => article.id !== id);
-      },
-      error: (err) => console.error('Failed to delete article:', err)
-    });
+  showModalToDecide(id: number): void {  
+    this.id_final = id; 
+    this.showModal = true;
   }
 
   routeForward(routeId: number, event?: Event) {
@@ -41,4 +39,21 @@ export class ArticleListComponent implements OnInit{
     }
     this.router.navigate(['/editArticle', routeId]);
   }
+
+  continueDelete()
+  {
+    this.articleService.deleteArticle(this.id_final).subscribe({
+      next: () => {
+        console.log('Article deleted successfully');
+        this.articles = this.articles.filter(article => article.id !== this.id_final);
+      },
+      error: (err) => console.error('Failed to delete article:', err)
+    });
+    this.showModal = false; 
+  }
+  hideModal() {
+    this.showModal = false;
+    this.router.navigate(['/articlesDashboard']);
+  }
+
 }

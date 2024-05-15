@@ -22,7 +22,7 @@ export class ArticleService {
     return this.http.put(url, updatedArticleData);
   }
 
-  deleteArticle(id: number): Observable<any> {
+  deleteArticle(id: number | null): Observable<any> {
     const url = `${this.deleteArticleUrl}/${id}`;
     return this.http.delete(url);
   }
