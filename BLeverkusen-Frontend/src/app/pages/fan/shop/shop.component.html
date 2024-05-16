@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shop</title>
+    <style>
+      /* Customize the card */
+      .custom-card {
+        width: 240px; /* Set width to 300px */
+        height: 360px; /* Set height to 400px */
+        border-radius: 12px; /* Rounded corners */
+        background-color: #ffffff; /* White background */
+      }
+    </style>
+  </head>
+  <body class="m-0 p-0">
+    <div class="flex flex-col">
+      <!-- Header -->
+      <app-header
+        class="top-0 shadow-md w-full"
+        [link1]="'Shop'"
+        [route1]="'/shop'"
+        [link2]="'Money'"
+        [route2]="'/money'"
+      ></app-header>
+
+      <!-- Image -->
+      <img
+        src="assets/shop_bg.png"
+        alt="Shop Background"
+        class="w-full h-auto"
+      />
+
+      <!-- Headline -->
+      <h1 class="text-5xl font-bold mt-32 mb-32 text-center">
+        Things you care for
+      </h1>
+
+      <!-- Div that contains shop elements -->
+      <!-- Div that contains shop elements -->
+      <div class="container mx-auto">
+        <!-- Grid layout for cards -->
+        <div class="grid grid-cols-6 gap-8">
+          <!-- *ngFor to loop through articles and display article cards -->
+          <div class="col-span-1" *ngFor="let article of articles">
+            <app-article-card
+              [name]="article.name"
+              [price]="article.price"
+            ></app-article-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

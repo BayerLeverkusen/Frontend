@@ -12,6 +12,8 @@ import { EventOrganizatorReserveHotelComponent } from './pages/event_organizatio
 import { ArticlesDashboardComponent } from './pages/marketing_manager/articles-dashboard/articles-dashboard.component';
 import { AddArticleComponent } from './pages/marketing_manager/add-article/add-article.component';
 import { EditArticleComponent } from './pages/marketing_manager/edit-article/edit-article.component';
+import { ShopComponent } from './pages/fan/shop/shop.component';
+import { MoneyComponent } from './pages/fan/money/money.component';
 
 
 export const routes: Routes = [
@@ -24,5 +26,7 @@ export const routes: Routes = [
     { path: 'eventOrganizatorHomePage', component: EventOrganizatorHomepageComponent, canActivate: [UserAuthGuard]},
     { path: 'eventOrganizatorReserveHotel', component: EventOrganizatorReserveHotelComponent, canActivate: [UserAuthGuard]},
     { path: 'addArticle', component: AddArticleComponent}, // Marketing Manager
-    { path: 'editArticle/:id', component: EditArticleComponent} // Marketing Manager
+    { path: 'editArticle/:id', component: EditArticleComponent}, // Marketing Manager
+    { path: 'shop', component: ShopComponent}, // Marketing Manager 
+    { path: 'money', component: MoneyComponent} // Marketing Manager
 ];
