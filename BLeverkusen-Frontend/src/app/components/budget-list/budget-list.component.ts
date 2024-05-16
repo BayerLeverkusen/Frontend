@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { DirectorService } from '../../services/director-service/director.service';
 import { budget } from '../../models/budget';
 import { AuthService } from '../../services/auth-service/auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { AuthService } from '../../services/auth-service/auth.service';
 })
 export class BudgetListComponent {
 
-  constructor(private directorService:DirectorService, private authService:AuthService){}
+  constructor(private directorService:DirectorService, private authService:AuthService, private router:Router, private ngZone:NgZone){}
   
   userId:string = this.authService.getUsernameFromToken() ?? '';
   showModal = false;
@@ -27,12 +28,31 @@ export class BudgetListComponent {
 
   voteForProposal(Id:number)
   {
-    this.directorService.vote({userId:this.userId,proposalId:Id});
     this.directorService.getProposals(this.userId).subscribe(data=>{this.budgets=data;});
+    this.directorService.vote({userId:this.userId,proposalId:Id});
     this.showModal = true;
+    
+    this.delayRefresh();
   }
 
   hideModal() {
     this.showModal = false;
+  }
+
+
+  refreshPage() {
+    this.router.navigate([this.router.url]).then(() => {
+      window.location.reload();
+    });
+  }
+
+  delayRefresh() {
+    this.ngZone.runOutsideAngular(() => {
+      setTimeout(() => {
+        this.ngZone.run(() => {
+          this.refreshPage();
+        });
+      }, 2000);
+    });
   }
 }
