@@ -20,10 +20,12 @@ export class ShopComponent implements OnInit {
 
   ngOnInit(): void {
     this.articleService.getAllArticles().subscribe({
-      next: (articles) => this.articles = articles.sort((a, b) => a.id - b.id),
+      next: (articles) => {
+        this.articles = articles.sort((a, b) => a.id - b.id);
+        console.log('Fetched Articles:', this.articles);
+      },
       error: (err) => console.error('Failed to get articles:', err)
-    });
-    console.log(this.articles); 
+    }); 
   }
-
+  
 }

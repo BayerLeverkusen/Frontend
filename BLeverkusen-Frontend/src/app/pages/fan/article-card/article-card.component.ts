@@ -11,6 +11,7 @@ export class ArticleCardComponent {
 
     @Input() name!: string; 
     @Input() price!: number;
+    @Input() imageurl!: string; 
 
     constructor() { }
 }

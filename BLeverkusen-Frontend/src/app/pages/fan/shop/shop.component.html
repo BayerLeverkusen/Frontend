@@ -45,6 +45,7 @@
           <!-- *ngFor to loop through articles and display article cards -->
           <div class="col-span-1" *ngFor="let article of articles">
             <app-article-card
+              [imageurl]="article.imageurl"
               [name]="article.name"
               [price]="article.price"
             ></app-article-card>

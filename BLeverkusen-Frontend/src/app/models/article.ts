@@ -3,5 +3,6 @@ export interface Article {
     name: string;
     description: string;
     price: number;
+    imageurl: string;
   }
   
