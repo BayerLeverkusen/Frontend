@@ -17,7 +17,7 @@ export class BudgetListComponent {
   constructor(private directorService:DirectorService, private authService:AuthService){}
   
   userId:string = this.authService.getUsernameFromToken() ?? '';
-
+  showModal = false;
 
   budgets: budget[] = [];
   ngOnInit():void{
@@ -28,5 +28,11 @@ export class BudgetListComponent {
   voteForProposal(Id:number)
   {
     this.directorService.vote({userId:this.userId,proposalId:Id});
+    this.directorService.getProposals(this.userId).subscribe(data=>{this.budgets=data;});
+    this.showModal = true;
+  }
+
+  hideModal() {
+    this.showModal = false;
   }
 }
