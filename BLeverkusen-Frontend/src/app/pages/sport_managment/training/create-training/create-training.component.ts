@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../../../../components/admin-header/header.component';
 import { FormsModule } from '@angular/forms';
@@ -28,11 +28,14 @@ export class CreateTrainingComponent implements OnInit, OnDestroy {
     private clubFacilityService: ClubFacilityService,
     private playerService: PlayerService,
     private trainingService : TrainingService,
+    private renderer: Renderer2,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
     this.clubFacilityIdSubscription = this.clubFacilityService.selectedClubFacilityId$.subscribe(id => {
       if (id !== -1) {
+        this.cdr.detectChanges();
         this.fetchExistingTrainings();
       }
     });
@@ -43,6 +46,7 @@ export class CreateTrainingComponent implements OnInit, OnDestroy {
   }
 
   toggleDropdown() {
+    this.clearDisabledSlots();
     this.isDropdownOpen = !this.isDropdownOpen;
   }
 
@@ -77,7 +81,6 @@ export class CreateTrainingComponent implements OnInit, OnDestroy {
   }
 
   fetchExistingTrainings() {
-    this.clearDisabledSlots();
 
     if (this.clubFacilityService.selectedClubFacilityId !== -1) {
       this.trainingService.getTrainingsByClubFacilityId(this.clubFacilityService.selectedClubFacilityId).subscribe({
@@ -103,18 +106,18 @@ export class CreateTrainingComponent implements OnInit, OnDestroy {
         const slotTime = new Date(`01/01/2000 ${slotValue}`);
         
         if (slotTime >= adjustedStartTime && slotTime <= endTime) {
-          slot.setAttribute('disabled', 'true');
-          slot.parentElement?.classList.add('disabled-slot');
+          this.renderer.setAttribute(slot, 'disabled', 'true');
+          this.renderer.addClass(slot.parentElement, 'disabled-slot'); 
         }
       });
     });
   }
 
   clearDisabledSlots() {
-    const disabledSlots = document.querySelectorAll('.disabled-slot');
+    const disabledSlots = document.querySelectorAll('input[type="radio"][name="timetable"]');
     disabledSlots.forEach(slot => {
-        slot.removeAttribute('disabled');
-        slot.classList.remove('disabled-slot');
+      this.renderer.removeAttribute(slot, 'disabled');
+      this.renderer.removeClass(slot.parentElement, 'disabled-slot');
     });
 }
 

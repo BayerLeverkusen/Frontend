@@ -12,7 +12,7 @@
     [link1]="'Trainings'" [route1]="'/createTraining'">
     </app-header>
 
-    <div style="display: grid; grid-template-rows: auto auto; grid-template-columns: auto auto; width: full; padding-top: 15vh;">
+    <div style="display: grid; grid-template-rows: auto auto; grid-template-columns: auto auto; width: 100%; padding-top: 15vh;">
         <div style="margin-left: 10vw;  padding: 20px; text-align: center; grid-row:1; grid-column:1;">
             <div class="flex flex-col items-center justify-center">
                 <label class="text-2xl mb-2">
@@ -46,118 +46,18 @@
             </div>
         </div>
 
-        <div style="margin-left: 10vw; text-align: center; grid-row:2; grid-column:1;">
-            <div class="flex justify-center items-center mt-10">
+        <div style="margin-right: 10vw; padding: 20px; text-align: center; grid-row:1; grid-column:2;">
+            <div class="flex justify-center items-center">
                 <label class="text-2xl mb-2">
                     Date
                 </label>
             </div>
             <div class="flex justify-center items-center">
-                <input datepicker-autohide datepicker-format="mm/dd/yyyy" datepicker-orientation="left" [(ngModel)]="selectedDate" type="date" class="text-center w-full sm:max-w-[15rem] border border-gray-200 dark:border-gray-800 py-2 px-4 rounded-lg mb-2">
+                <input datepicker-autohide datepicker-format="mm/dd/yyyy" datepicker-orientation="left" [(ngModel)]="selectedDate" type="date" class="text-center w-full cursor-pointer sm:max-w-[15rem] border border-gray-200 dark:border-gray-800 rounded-lg mb-2">
             </div>
         </div>
-
-        <div style="margin-right: 15vw; padding: 20px; text-align: center; grid-row:1/span 2; grid-column:2;">
-            <div class="flex justify-center items-center">
-                <label class="text-2xl">
-                    Time
-                </label>
-            </div>
-            <div class="relative flex justify-center items-center">
-                <div class="pt-5 dark:border-gray-800 flex rtl:space-x-reverse">
-                    <div class=" dark:border-gray-800 w-full sm:max-w-[15rem] mt-5 sm:mt-0">
-                       <ul id="timetable" class="grid w-full grid-cols-2 gap-2">
-                          <li>
-                             <input type="radio" id="7-am" value="07:00" class="hidden peer" name="timetable" (click)="selectTime('07:00')">
-                             <label for="7-am"
-                                class="inline-flex items-center justify-center w-full p-2 text-sm font-medium text-center bg-white border rounded-lg cursor-pointer text-black peer-checked:bg-neutral-700 hover:text-white peer-checked:text-white hover:bg-neutral-400">
-                             7:00 AM
-                             </label>
-                          </li>
-                          <li>
-                             <input type="radio" id="7-30-am" value="07:30" class="hidden peer" name="timetable" (click)="selectTime('07:30')">
-                             <label for="7-30-am"
-                                class="inline-flex items-center justify-center w-full p-2 text-sm font-medium text-center bg-white border rounded-lg cursor-pointer text-black peer-checked:bg-neutral-700 hover:text-white peer-checked:text-white hover:bg-neutral-400">
-                             7:30 AM
-                             </label>
-                          </li>
-                          <li>
-                             <input type="radio" id="8-am" value="08:00" class="hidden peer" name="timetable" (click)="selectTime('08:00')">
-                             <label for="8-am"
-                                class="inline-flex items-center justify-center w-full p-2 text-sm font-medium text-center bg-white border rounded-lg cursor-pointer text-black peer-checked:bg-neutral-700 hover:text-white peer-checked:text-white hover:bg-neutral-400">
-                             8:00 AM
-                             </label>
-                          </li>
-                          <li>
-                             <input type="radio" id="8-30-am" value="08:30" class="hidden peer" name="timetable" (click)="selectTime('08:30')">
-                             <label for="8-30-am"
-                                class="inline-flex items-center justify-center w-full p-2 text-sm font-medium text-center bg-white border rounded-lg cursor-pointer text-black peer-checked:bg-neutral-700 hover:text-white peer-checked:text-white hover:bg-neutral-400">
-                             8:30 AM
-                             </label>
-                          </li>
-                          <li>
-                             <input type="radio" id="9-am" value="09:00" class="hidden peer" name="timetable" (click)="selectTime('09:00')">
-                             <label for="9-am"
-                                class="inline-flex items-center justify-center w-full p-2 text-sm font-medium text-center bg-white border rounded-lg cursor-pointer text-black peer-checked:bg-neutral-700 hover:text-white peer-checked:text-white hover:bg-neutral-400">
-                             9:00 AM
-                             </label>
-                          </li>
-                          <li>
-                             <input type="radio" id="9-30-am" value="09:30" class="hidden peer" name="timetable" (click)="selectTime('09:30')">
-                             <label for="9-30-am"
-                                class="inline-flex items-center justify-center w-full p-2 text-sm font-medium text-center bg-white border rounded-lg cursor-pointer text-black peer-checked:bg-neutral-700 hover:text-white peer-checked:text-white hover:bg-neutral-400">
-                             9:30 AM
-                             </label>
-                          </li>
-                          <li>
-                             <input type="radio" id="10-am" value="10:00" class="hidden peer" name="timetable" (click)="selectTime('10:00')">
-                             <label for="10-am"
-                                class="inline-flex items-center justify-center w-full p-2 text-sm font-medium text-center bg-white border rounded-lg cursor-pointer text-black peer-checked:bg-neutral-700 hover:text-white peer-checked:text-white hover:bg-neutral-400">
-                             10:00 AM
-                             </label>
-                          </li>
-                          <li>
-                             <input type="radio" id="10-30-am" value="10:30" class="hidden peer" name="timetable" (click)="selectTime('10:30')">
-                             <label for="10-30-am"
-                                class="inline-flex items-center justify-center w-full p-2 text-sm font-medium text-center bg-white border rounded-lg cursor-pointer text-black peer-checked:bg-neutral-700 hover:text-white peer-checked:text-white hover:bg-neutral-400">
-                             10:30 AM
-                             </label>
-                          </li>
-                          <li>
-                             <input type="radio" id="11-am" value="11:00" class="hidden peer" name="timetable" (click)="selectTime('11:00')">
-                             <label for="11-am"
-                                class="inline-flex items-center justify-center w-full p-2 text-sm font-medium text-center bg-white border rounded-lg cursor-pointer text-black peer-checked:bg-neutral-700 hover:text-white peer-checked:text-white hover:bg-neutral-400">
-                             11:00 AM
-                             </label>
-                          </li>
-                          <li>
-                             <input type="radio" id="11-30-am" value="11:30" class="hidden peer" name="timetable" (click)="selectTime('11:30')">
-                             <label for="11-30-am"
-                                class="inline-flex items-center justify-center w-full p-2 text-sm font-medium text-center bg-white border rounded-lg cursor-pointer text-black peer-checked:bg-neutral-700 hover:text-white peer-checked:text-white hover:bg-neutral-400">
-                             11:30 AM
-                             </label>
-                          </li>
-                          <li>
-                             <input type="radio" id="12-am" value="12:00" class="hidden peer" name="timetable" (click)="selectTime('12:00')">
-                             <label for="12-am"
-                                class="inline-flex items-center justify-center w-full p-2 text-sm font-medium text-center bg-white border rounded-lg cursor-pointer text-black peer-checked:bg-neutral-700 hover:text-white peer-checked:text-white hover:bg-neutral-400">
-                             12:00 AM
-                             </label>
-                          </li>
-                          <li>
-                             <input type="radio" id="12-30-am" value="12:30" class="hidden peer" name="timetable" (click)="selectTime('12:30')">
-                             <label for="12-30-am"
-                                class="inline-flex items-center justify-center w-full p-2 text-sm font-medium text-center bg-white border rounded-lg cursor-pointer text-black peer-checked:bg-neutral-700 hover:text-white peer-checked:text-white hover:bg-neutral-400">
-                             12:30 AM
-                             </label>
-                          </li>
-                       </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div style="padding: 40px; text-align: center; grid-row: 3; grid-column: 1 / span 2;">
+        
+        <div style="padding: 40px; text-align: center; grid-row: 2; grid-column: 1 / span 2;">
             <div class="flex-col justify-center items-center mt-10">
                 <label class="text-2xl">
                     Select the room where the training will be held
@@ -165,8 +65,109 @@
                 <app-club-facilities-list/>              
             </div>
         </div>
+        
+        <div style="text-align: center; grid-row:3; grid-column:1/span 2;" class="flex flex-col justify-center items-center">
+            <label class="text-2xl">
+                Select the time
+            </label>
+        </div>
 
-        <div style="padding: 40px; text-align: center; grid-row: 4; grid-column: 1 / span 2;">
+        <div class="dark:border-gray-800 mt-5" style="text-align: center; grid-row: 4; grid-column:1/span 2;">
+            <ul id="timetable" class="flex justify-center items-center">
+                <li style="margin-left: 2vw; margin-right: 2vw;">
+                    <input type="radio" id="7-am" value="07:00" class="hidden peer" name="timetable" (click)="selectTime('07:00')">
+                    <label for="7-am" style="width: 5vw;"
+                    class="inline-flex items-center justify-center w-full p-2 text-sm font-medium text-center bg-white border rounded-lg cursor-pointer text-black peer-checked:bg-neutral-700 hover:text-white peer-checked:text-white hover:bg-neutral-400">
+                    7:00 AM
+                    </label>
+                </li>
+                <li style="margin-left: 2vw; margin-right: 2vw;">
+                    <input type="radio" id="7-30-am" value="07:30" class="hidden peer" name="timetable" (click)="selectTime('07:30')">
+                    <label for="7-30-am" style="width: 5vw;"
+                    class="inline-flex items-center justify-center w-full p-2 text-sm font-medium text-center bg-white border rounded-lg cursor-pointer text-black peer-checked:bg-neutral-700 hover:text-white peer-checked:text-white hover:bg-neutral-400">
+                    7:30 AM
+                    </label>
+                </li>
+                <li style="margin-left: 2vw; margin-right: 2vw;">
+                    <input type="radio" id="8-am" value="08:00" class="hidden peer" name="timetable" (click)="selectTime('08:00')">
+                    <label for="8-am" style="width: 5vw;"
+                    class="inline-flex items-center justify-center w-full p-2 text-sm font-medium text-center bg-white border rounded-lg cursor-pointer text-black peer-checked:bg-neutral-700 hover:text-white peer-checked:text-white hover:bg-neutral-400">
+                    8:00 AM
+                    </label>
+                </li>
+                <li style="margin-left: 2vw; margin-right: 2vw;">
+                    <input type="radio" id="8-30-am" value="08:30" class="hidden peer" name="timetable" (click)="selectTime('08:30')">
+                    <label for="8-30-am" style="width: 5vw;"
+                    class="inline-flex items-center justify-center w-full p-2 text-sm font-medium text-center bg-white border rounded-lg cursor-pointer text-black peer-checked:bg-neutral-700 hover:text-white peer-checked:text-white hover:bg-neutral-400">
+                    8:30 AM
+                    </label>
+                </li>
+                <li style="margin-left: 2vw; margin-right: 2vw;">
+                    <input type="radio" id="9-am" value="09:00" class="hidden peer" name="timetable" (click)="selectTime('09:00')">
+                    <label for="9-am" style="width: 5vw;"
+                    class="inline-flex items-center justify-center w-full p-2 text-sm font-medium text-center bg-white border rounded-lg cursor-pointer text-black peer-checked:bg-neutral-700 hover:text-white peer-checked:text-white hover:bg-neutral-400">
+                    9:00 AM
+                    </label>
+                </li>
+                <li style="margin-left: 2vw; margin-right: 2vw;">
+                    <input type="radio" id="9-30-am" value="09:30" class="hidden peer" name="timetable" (click)="selectTime('09:30')">
+                    <label for="9-30-am" style="width: 5vw;"
+                    class="inline-flex items-center justify-center w-full p-2 text-sm font-medium text-center bg-white border rounded-lg cursor-pointer text-black peer-checked:bg-neutral-700 hover:text-white peer-checked:text-white hover:bg-neutral-400">
+                    9:30 AM
+                    </label>
+                </li>
+            </ul>
+        </div>
+
+        <div class="dark:border-gray-800 mt-5" style="text-align: center; grid-row: 5; grid-column:1/span 2;">
+            <ul id="timetable" class="flex justify-center items-center">
+                <li style="margin-left: 2vw; margin-right: 2vw;">
+                    <input type="radio" id="10-am" value="10:00" class="hidden peer" name="timetable" (click)="selectTime('10:00')">
+                    <label for="10-am" style="width: 5vw;"
+                       class="inline-flex items-center justify-center w-full p-2 text-sm font-medium text-center bg-white border rounded-lg cursor-pointer text-black peer-checked:bg-neutral-700 hover:text-white peer-checked:text-white hover:bg-neutral-400">
+                    10:00 AM
+                    </label>
+                 </li>
+                 <li style="margin-left: 2vw; margin-right: 2vw;">
+                    <input type="radio" id="10-30-am" value="10:30" class="hidden peer" name="timetable" (click)="selectTime('10:30')">
+                    <label for="10-30-am" style="width: 5vw;"
+                       class="inline-flex items-center justify-center w-full p-2 text-sm font-medium text-center bg-white border rounded-lg cursor-pointer text-black peer-checked:bg-neutral-700 hover:text-white peer-checked:text-white hover:bg-neutral-400">
+                    10:30 AM
+                    </label>
+                 </li>
+                 <li style="margin-left: 2vw; margin-right: 2vw;">
+                    <input type="radio" id="11-am" value="11:00" class="hidden peer" name="timetable" (click)="selectTime('11:00')">
+                    <label for="11-am" style="width: 5vw;"
+                       class="inline-flex items-center justify-center w-full p-2 text-sm font-medium text-center bg-white border rounded-lg cursor-pointer text-black peer-checked:bg-neutral-700 hover:text-white peer-checked:text-white hover:bg-neutral-400">
+                    11:00 AM
+                    </label>
+                 </li>
+                 <li style="margin-left: 2vw; margin-right: 2vw;">
+                    <input type="radio" id="11-30-am" value="11:30" class="hidden peer" name="timetable" (click)="selectTime('11:30')">
+                    <label for="11-30-am" style="width: 5vw;"
+                       class="inline-flex items-center justify-center w-full p-2 text-sm font-medium text-center bg-white border rounded-lg cursor-pointer text-black peer-checked:bg-neutral-700 hover:text-white peer-checked:text-white hover:bg-neutral-400">
+                    11:30 AM
+                    </label>
+                 </li>
+                 <li style="margin-left: 2vw; margin-right: 2vw;">
+                    <input type="radio" id="12-am" value="12:00" class="hidden peer" name="timetable" (click)="selectTime('12:00')">
+                    <label for="12-am" style="width: 5vw;"
+                       class="inline-flex items-center justify-center w-full p-2 text-sm font-medium text-center bg-white border rounded-lg cursor-pointer text-black peer-checked:bg-neutral-700 hover:text-white peer-checked:text-white hover:bg-neutral-400">
+                    12:00 AM
+                    </label>
+                 </li>
+                 <li style="margin-left: 2vw; margin-right: 2vw;">
+                    <input type="radio" id="12-30-am" value="12:30" class="hidden peer" name="timetable" (click)="selectTime('12:30')">
+                    <label for="12-30-am" style="width: 5vw;"
+                       class="inline-flex items-center justify-center w-full p-2 text-sm font-medium text-center bg-white border rounded-lg cursor-pointer text-black peer-checked:bg-neutral-700 hover:text-white peer-checked:text-white hover:bg-neutral-400">
+                    12:30 AM
+                    </label>
+                 </li>
+            </ul>
+        </div>
+
+
+        <div style="padding: 40px; text-align: center; grid-row: 6; grid-column: 1 / span 2;">
             <div class="flex-col justify-center items-center mt-10">
                 <label class="text-2xl">
                     Select which players will attend the training
@@ -175,10 +176,12 @@
             </div>
         </div>
 
-        <div style="text-align: center;">
-            <button (click)="createTraining()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-5">
-                Create Training
-            </button>
+        <div style="text-align: center; grid-row: 7; grid-column: 1 / span 2;">
+            <div class="flex-col justify-center items-center mb-7 mt-5">
+                <button (click)="createTraining()" class="inline-flex items-center justify-center p-4 text-md font-medium text-center border rounded-lg cursor-pointer text-black peer-checked:bg-neutral-700 hover:text-white peer-checked:text-white hover:bg-neutral-400">
+                    Create Training
+                </button>
+            </div>
         </div>
 
     </div>  
