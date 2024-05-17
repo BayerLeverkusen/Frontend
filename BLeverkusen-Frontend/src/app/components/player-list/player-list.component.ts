@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Player } from '../../models/player';
 import { PlayerService } from '../../services/player-service/player.service';
@@ -12,6 +12,7 @@ import { PlayerService } from '../../services/player-service/player.service';
   styleUrl: './player-list.component.css'
 })
 export class PlayerListComponent implements OnInit {
+  @Input() unavailablePlayerIds: number[] = [];
   players: Player[] = [];
   selectedPlayerIds: number[] = [];
 
@@ -38,5 +39,10 @@ export class PlayerListComponent implements OnInit {
   isSelected(playerId: number): boolean {
     return this.selectedPlayerIds.includes(playerId);
   }
+
+  isUnavailable(playerId: number): boolean {
+    return this.unavailablePlayerIds.includes(playerId);
+  }
+
 
 }

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../../../../components/admin-header/header.component';
 import { FormsModule } from '@angular/forms';
@@ -22,6 +22,8 @@ export class CreateTrainingComponent implements OnInit, OnDestroy {
   selectedTime = '';
   selectedDate = '';
   existingTrainings: any[] = [];
+  trainingsByDate: any[] = [];
+  unavailablePlayerIds: number[] = [];
   clubFacilityIdSubscription: Subscription = new Subscription;
 
   constructor(
@@ -29,20 +31,27 @@ export class CreateTrainingComponent implements OnInit, OnDestroy {
     private playerService: PlayerService,
     private trainingService : TrainingService,
     private renderer: Renderer2,
-    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
     this.clubFacilityIdSubscription = this.clubFacilityService.selectedClubFacilityId$.subscribe(id => {
       if (id !== -1) {
-        this.cdr.detectChanges();
         this.fetchExistingTrainings();
       }
     });
+    this.setMinDate();
   }
 
   ngOnDestroy(): void {
     this.clubFacilityIdSubscription.unsubscribe();
+  }
+
+  setMinDate(): void {
+    const today = new Date().toISOString().split('T')[0];
+    const dateInput = document.getElementById('training-date') as HTMLInputElement;
+    if (dateInput) {
+      this.renderer.setAttribute(dateInput, 'min', today);
+    }
   }
 
   toggleDropdown() {
@@ -51,6 +60,7 @@ export class CreateTrainingComponent implements OnInit, OnDestroy {
   }
 
   selectTime(time: string) {
+    this.fetchTrainingsByDate(this.selectedDate);
     this.selectedTime = time;
   }
 
@@ -81,7 +91,7 @@ export class CreateTrainingComponent implements OnInit, OnDestroy {
   }
 
   fetchExistingTrainings() {
-
+    this.clearDisabledSlots();
     if (this.clubFacilityService.selectedClubFacilityId !== -1) {
       this.trainingService.getTrainingsByClubFacilityId(this.clubFacilityService.selectedClubFacilityId).subscribe({
         next: (trainings) => {
@@ -93,23 +103,58 @@ export class CreateTrainingComponent implements OnInit, OnDestroy {
     }
   }
 
-  disableTimeSlots() {
-    this.existingTrainings.forEach(training => {
-      const startTime = new Date(`01/01/2000 ${training.time}`);
-      const endTime = new Date(startTime.getTime() + 60 * 60000);
-      const adjustedStartTime = new Date(startTime.getTime() - 60 * 60000);
+  fetchTrainingsByDate(date: string) {
+    if (!this.selectedDate) return;
   
-      const timeSlots = document.querySelectorAll('input[type="radio"][name="timetable"]');
-      timeSlots.forEach(slot => {
-        const slotValue = (slot as HTMLInputElement).value;
+    this.trainingService.getTrainingsByDate(date).subscribe({
+      next: (trainings) => {
+        this.trainingsByDate = trainings;
+        this.unavailablePlayerIds = this.calculateUnavailablePlayers();
+        console.log(this.unavailablePlayerIds);
+      },
+      error: (err) => console.error('Failed to get trainings by date', err)
+    });
+  }
+  
+  calculateUnavailablePlayers(): number[] {
+    this.unavailablePlayerIds = [];
+    const selectedTime = new Date(`01/01/2000 ${this.selectedTime}`);
+    const selectedEndTime = new Date(selectedTime.getTime() + 90 * 60000);
 
-        const slotTime = new Date(`01/01/2000 ${slotValue}`);
-        
-        if (slotTime >= adjustedStartTime && slotTime <= endTime) {
-          this.renderer.setAttribute(slot, 'disabled', 'true');
-          this.renderer.addClass(slot.parentElement, 'disabled-slot'); 
-        }
-      });
+    this.trainingsByDate.forEach(training => {
+      const trainingTime = new Date(`01/01/2000 ${training.time}`);
+      const trainingEndTime = new Date(trainingTime.getTime() + 90 * 60000);
+
+      if (trainingTime < selectedEndTime && trainingEndTime > selectedTime) {
+        this.unavailablePlayerIds.push(...training.playerIds);
+      }
+    });
+
+    return this.unavailablePlayerIds;
+  }
+  
+
+  disableTimeSlots() {
+    const selectedDate = new Date(this.selectedDate);
+  
+    this.existingTrainings.forEach(training => {
+      const trainingDate = new Date(training.date);
+      if (trainingDate.toDateString() === selectedDate.toDateString()) {
+        const startTime = new Date(`01/01/2000 ${training.time}`);
+        const endTime = new Date(startTime.getTime() + 60 * 60000);
+        const adjustedStartTime = new Date(startTime.getTime() - 60 * 60000);
+  
+        const timeSlots = document.querySelectorAll('input[type="radio"][name="timetable"]');
+        timeSlots.forEach(slot => {
+          const slotValue = (slot as HTMLInputElement).value;
+          const slotTime = new Date(`01/01/2000 ${slotValue}`);
+  
+          if (slotTime >= adjustedStartTime && slotTime <= endTime) {
+            this.renderer.setAttribute(slot, 'disabled', 'true');
+            this.renderer.addClass(slot.parentElement, 'disabled-slot');
+          }
+        });
+      }
     });
   }
 
@@ -119,6 +164,12 @@ export class CreateTrainingComponent implements OnInit, OnDestroy {
       this.renderer.removeAttribute(slot, 'disabled');
       this.renderer.removeClass(slot.parentElement, 'disabled-slot');
     });
-}
+  }
+
+  onDateChange() {
+    this.fetchTrainingsByDate(this.selectedDate);
+    this.clearDisabledSlots();
+    this.disableTimeSlots();
+  }
 
 }

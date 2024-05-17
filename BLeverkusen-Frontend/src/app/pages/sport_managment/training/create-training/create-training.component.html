@@ -53,7 +53,15 @@
                 </label>
             </div>
             <div class="flex justify-center items-center">
-                <input datepicker-autohide datepicker-format="mm/dd/yyyy" datepicker-orientation="left" [(ngModel)]="selectedDate" type="date" class="text-center w-full cursor-pointer sm:max-w-[15rem] border border-gray-200 dark:border-gray-800 rounded-lg mb-2">
+                <input 
+                    id="training-date" 
+                    datepicker-autohide 
+                    datepicker-format="yyyy/mm/dd" 
+                    datepicker-orientation="left" 
+                    [(ngModel)]="selectedDate" 
+                    (ngModelChange)="onDateChange()" 
+                    type="date" 
+                    class="text-center w-full cursor-pointer sm:max-w-[15rem] border border-gray-200 dark:border-gray-800 rounded-lg mb-2">
             </div>
         </div>
         
@@ -172,7 +180,7 @@
                 <label class="text-2xl">
                     Select which players will attend the training
                 </label>                
-                <app-player-list/>
+                <app-player-list [unavailablePlayerIds]="unavailablePlayerIds"/>
             </div>
         </div>
 

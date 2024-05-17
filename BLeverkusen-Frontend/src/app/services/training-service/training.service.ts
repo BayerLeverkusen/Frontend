@@ -21,6 +21,11 @@ export class TrainingService {
     return this.http.get<Training[]>(`${this.baseUrl}/getByClubFacilityId/${clubFacilityId}`);
   }
 
+  getTrainingsByDate(date: string): Observable<Training[]>{
+    return this.http.get<Training[]>(`${this.baseUrl}/getByDate/${date}`);
+  }
+
+
 
   constructor(
     private http: HttpClient,
