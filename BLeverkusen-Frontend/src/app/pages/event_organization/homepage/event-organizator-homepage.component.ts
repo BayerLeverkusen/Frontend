@@ -33,6 +33,7 @@ export class EventOrganizatorHomepageComponent {
   cities: string[] = [ 'Leverkusen', 'Barcelona']; // Replace with your data
   country: string = '';
   city: string = '';
+  type: string = '';
   isDialogOpen = false;
 
   hotels: Hotel[] = [];
@@ -44,8 +45,20 @@ export class EventOrganizatorHomepageComponent {
 
   constructor(private hotleService: HotleServiceService) { }
 
-  reserveHotel() {
+  convertDateFormat(dateString: string): string {
+    // Split the input date string by hyphens
+    const [year, month, day] = dateString.split('-');
     
+    // Return the new date format
+    return `${month}-${day}-${year}`;
+  }
+
+  reserveHotel(resourceName: string) {
+    this.startDate = this.convertDateFormat(this.startDate);
+    this.endDate = this.convertDateFormat(this.endDate);
+    //this.endDate = '05-27-2024';
+    this.type = 'HOTEL';
+    this.hotleService.reserveHotel({resourceName,startDate:this.startDate,endDate:this.endDate,city:this.city,country:this.country,type:this.type});
   }
 
   openDialog() {
