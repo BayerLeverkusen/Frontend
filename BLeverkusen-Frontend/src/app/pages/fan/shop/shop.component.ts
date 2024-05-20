@@ -4,6 +4,7 @@ import { ArticleCardComponent } from '../article-card/article-card.component';
 import { Article } from '../../../models/article';
 import { ArticleService } from '../../../services/article-service/article-service.component';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shop',
@@ -16,7 +17,7 @@ export class ShopComponent implements OnInit {
 
   articles: Article[] = [];
 
-  constructor(private articleService: ArticleService) {}
+  constructor(private router: Router, private articleService: ArticleService) {}
 
   ngOnInit(): void {
     this.articleService.getAllArticles().subscribe({
@@ -27,5 +28,13 @@ export class ShopComponent implements OnInit {
       error: (err) => console.error('Failed to get articles:', err)
     }); 
   }
+
+  routeForward(routeId: number, event?: Event) {
+    if (event) {
+      event.preventDefault();
+    }
+    this.router.navigate(['/buy', routeId]);
+  }
+
   
 }

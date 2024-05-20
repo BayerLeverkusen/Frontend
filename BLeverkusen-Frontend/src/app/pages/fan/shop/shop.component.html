@@ -23,6 +23,8 @@
         [route1]="'/shop'"
         [link2]="'Money'"
         [route2]="'/money'"
+        [link3]="'Inbox'"
+        [route3]="'/inbox'"
       ></app-header>
 
       <!-- Image -->
@@ -33,7 +35,7 @@
       />
 
       <!-- Headline -->
-      <h1 class="text-5xl font-bold mt-32 mb-32 text-center">
+      <h1 class="text-5xl text-neutral-800 font-bold mt-32 mb-32 text-center">
         Things you care for
       </h1>
 
@@ -44,11 +46,13 @@
         <div class="grid grid-cols-6 gap-8">
           <!-- *ngFor to loop through articles and display article cards -->
           <div class="col-span-1" *ngFor="let article of articles">
-            <app-article-card
-              [imageurl]="article.imageurl"
-              [name]="article.name"
-              [price]="article.price"
-            ></app-article-card>
+            <a (click)="routeForward(article.id)">
+              <app-article-card
+                [imageurl]="article.imageurl"
+                [name]="article.name"
+                [price]="article.price"
+              ></app-article-card>
+            </a>
           </div>
         </div>
       </div>
