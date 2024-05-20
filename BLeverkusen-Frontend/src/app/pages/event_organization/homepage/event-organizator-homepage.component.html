@@ -42,7 +42,7 @@
           <ul *ngIf="hotels.length > 0">
             <li *ngFor="let hotel of hotels">
               
-              <button type="submit" class="small-light-gray-button ml-4" (click)="reserveHotel(hotel.hotelName)" >
+              <button type="submit" class="small-light-gray-button ml-4" (click)="reserveTransport(hotel.hotelName)" >
                 {{ hotel.hotelName }} - {{ hotel.hotelPrice | currency:'EUR' }} per night (Rating: {{ hotel.hotelRating }})
               </button>
                 
@@ -63,7 +63,7 @@
           <ul *ngIf="hotels.length > 0">
             <li *ngFor="let hotel of hotels">
               
-              <button type="submit" class="small-light-gray-button ml-4" (click)="reserveHotel(hotel.hotelName)" >
+              <button type="submit" class="small-light-gray-button ml-4" (click)="reserveField(hotel.hotelName)" >
                 {{ hotel.hotelName }} - {{ hotel.hotelPrice | currency:'EUR' }} per night (Rating: {{ hotel.hotelRating }})
               </button>
                 
@@ -76,6 +76,18 @@
         <button type="button" class="close" (click)="closeDialog()">Close</button>
       </div>
       <!-- END -->
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700 mb-2">Type</label>
+
+        <div class="custom-dropdown">
+          <select [(ngModel)]="gameType" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 rounded-md w-1/4 px-3 py-2 border border-gray-300">
+            <option *ngFor="let name of gameTypes" [value]="name">
+              {{ name }}
+            </option>
+          </select>
+        </div>
+      </div>
+
       <div class="mb-4">
         <label class="block text-sm font-medium text-gray-700 mb-2">Event name</label>
 
@@ -121,13 +133,13 @@
         </div>
       </div>
 
-      <button type="submit" class="big-light-gray-button" (click)="openHotelDialog()" [disabled]="!allInputsFilled()" >
+      <button type="submit" class="big-light-gray-button" (click)="openHotelDialog()" [disabled]="!allInputsFilled()" [class.big-light-gray-button-disabled]="!allInputsFilled()" >
         Hotels
       </button>
-      <button type="submit" class="big-light-gray-button ml-4" (click)="openTransportDialog()" [disabled]="!allInputsFilled()">
+      <button type="submit" class="big-light-gray-button ml-4" (click)="openTransportDialog()" [disabled]="!allInputsFilled() && !transportDisable()"   [class.big-light-gray-button-disabled]="!transportDisable()" [class.big-light-gray-button-disabledd]="!allInputsFilled()">
         Transports & Security
       </button>
-      <button type="submit" class="big-light-gray-button ml-4" (click)="openFieldDialog()" [disabled]="!allInputsFilled()">
+      <button type="submit" class="big-light-gray-button ml-4" (click)="openFieldDialog()" [disabled]="!allInputsFilled()" [class.big-light-gray-button-disabled]="!allInputsFilled()">
         Playing fields
       </button>
       

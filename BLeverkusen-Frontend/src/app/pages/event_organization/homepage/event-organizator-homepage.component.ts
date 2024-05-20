@@ -6,6 +6,8 @@ import { AuthService } from '../../../services/auth-service/auth.service';
 import { HotleServiceService } from '../../../services/eventOrganizationService/hotelService/hotle-service.service';
 import { Router } from '@angular/router';
 import { Hotel } from '../../../models/hotel';
+import { TransportService } from '../../../services/eventOrganizationService/transportService/transport.service';
+import { FieldService } from '../../../services/eventOrganizationService/fieldService/field.service';
 
 @Component({
     selector: 'app-event-organizator-homepage',
@@ -37,6 +39,8 @@ export class EventOrganizatorHomepageComponent {
   isHotelDialogOpen = false;
   isTransportDialogOpen = false;
   isFieldDialogOpen = false;
+  gameTypes: string[] = ['Home', 'Away'];
+  gameType: string = '';
 
   hotels: Hotel[] = [];
   
@@ -45,7 +49,11 @@ export class EventOrganizatorHomepageComponent {
     country: this.country
   };
 
-  constructor(private hotleService: HotleServiceService) { }
+  constructor(
+    private hotleService: HotleServiceService ,
+    private transportService: TransportService ,
+    private fieldService: FieldService 
+  ) { }
 
   convertDateFormat(dateString: string): string {
     // Split the input date string by hyphens
@@ -56,6 +64,22 @@ export class EventOrganizatorHomepageComponent {
   }
 
   reserveHotel(resourceName: string) {
+    this.startDate = this.convertDateFormat(this.startDate);
+    this.endDate = this.convertDateFormat(this.endDate);
+    //this.endDate = '05-27-2024';
+    this.type = 'HOTEL';
+    this.hotleService.reserveHotel({resourceName,startDate:this.startDate,endDate:this.endDate,city:this.city,country:this.country,type:this.type});
+  }
+
+  reserveTransport(resourceName: string) {
+    this.startDate = this.convertDateFormat(this.startDate);
+    this.endDate = this.convertDateFormat(this.endDate);
+    //this.endDate = '05-27-2024';
+    this.type = 'HOTEL';
+    this.hotleService.reserveHotel({resourceName,startDate:this.startDate,endDate:this.endDate,city:this.city,country:this.country,type:this.type});
+  }
+
+  reserveField(resourceName: string) {
     this.startDate = this.convertDateFormat(this.startDate);
     this.endDate = this.convertDateFormat(this.endDate);
     //this.endDate = '05-27-2024';
@@ -131,7 +155,15 @@ export class EventOrganizatorHomepageComponent {
   }
 
   allInputsFilled(): boolean {
-    return this.hasValue(this.eventName) && this.hasValue(this.startDate) && this.hasValue(this.endDate) && this.hasValue(this.country) && this.hasValue(this.city);
+    return this.hasValue(this.eventName) && this.hasValue(this.startDate) && this.hasValue(this.endDate) && this.hasValue(this.country) && this.hasValue(this.city) && this.hasValue(this.gameType);
+  }
+
+  transportDisable(): boolean{
+    if(this.gameType == 'Away')
+      {
+        return true;
+      }
+    return false;
   }
   
 }
