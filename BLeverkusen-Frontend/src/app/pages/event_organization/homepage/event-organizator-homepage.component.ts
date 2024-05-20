@@ -34,7 +34,9 @@ export class EventOrganizatorHomepageComponent {
   country: string = '';
   city: string = '';
   type: string = '';
-  isDialogOpen = false;
+  isHotelDialogOpen = false;
+  isTransportDialogOpen = false;
+  isFieldDialogOpen = false;
 
   hotels: Hotel[] = [];
   
@@ -61,8 +63,24 @@ export class EventOrganizatorHomepageComponent {
     this.hotleService.reserveHotel({resourceName,startDate:this.startDate,endDate:this.endDate,city:this.city,country:this.country,type:this.type});
   }
 
-  openDialog() {
-    this.isDialogOpen = true;
+  openHotelDialog() {
+    this.isHotelDialogOpen = true;
+    this.hotleService.getHotels(this.city).subscribe({
+      next: (hotels) => this.hotels = hotels,
+      error: (err) => console.error('Failed to get users:', err)
+    });
+  }
+
+  openTransportDialog() {
+    this.isHotelDialogOpen = true;
+    this.hotleService.getHotels(this.city).subscribe({
+      next: (hotels) => this.hotels = hotels,
+      error: (err) => console.error('Failed to get users:', err)
+    });
+  }
+
+  openFieldDialog() {
+    this.isHotelDialogOpen = true;
     this.hotleService.getHotels(this.city).subscribe({
       next: (hotels) => this.hotels = hotels,
       error: (err) => console.error('Failed to get users:', err)
@@ -72,7 +90,9 @@ export class EventOrganizatorHomepageComponent {
   
 
   closeDialog() {
-    this.isDialogOpen = false;
+    this.isHotelDialogOpen = false;
+    this.isTransportDialogOpen = false;
+    this.isFieldDialogOpen = false;
   }
 
   
