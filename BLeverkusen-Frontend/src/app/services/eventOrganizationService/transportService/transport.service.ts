@@ -7,8 +7,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class TransportService {
-  private apiUrl = 'http://localhost:8082/api/hotel/getAll';
-  private apiUrl2 = 'http://localhost:8082/api/hotel/reserve'; // Replace with your actual API endpoint
+  private apiUrl = 'http://localhost:8082/api/transport/getAll';
+  private apiUrl2 = 'http://localhost:8082/api/transport/reserve'; // Replace with your actual API endpoint
 
   constructor(private http: HttpClient) {}
 
@@ -23,8 +23,10 @@ export class TransportService {
     return this.http.post<any>(this.apiUrl2, credentials)
     .subscribe(response => {
       console.log('Response:', response);
+      alert('Successfully reserved');
     }, error => {
       console.error('Error:', error);
+      alert('Error, try again');
     });
   }
   

@@ -23,8 +23,10 @@ export class FieldService {
     return this.http.post<any>(this.apiUrl2, credentials)
     .subscribe(response => {
       console.log('Response:', response);
+      alert('Successfully reserved');
     }, error => {
       console.error('Error:', error);
+      alert('Error, try again');
     });
   }
   
