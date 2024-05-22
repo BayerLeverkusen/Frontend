@@ -1,6 +1,6 @@
 import { Hotel } from "./hotel";
 
-export interface Event {
+export interface Events {
     hotels: Hotel[];
     transports: Hotel[];
     fields: Hotel[];
