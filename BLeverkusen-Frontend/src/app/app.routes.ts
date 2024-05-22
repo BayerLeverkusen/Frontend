@@ -13,6 +13,7 @@ import { ArticlesDashboardComponent } from './pages/marketing_manager/articles-d
 import { DirectorHomePageComponent } from './pages/director/director-home-page/director-home-page.component';
 import { DirectorCreateComponent } from './pages/director/director-create/director-create.component';
 import { VotingPageComponent } from './pages/board_member/voting-page/voting-page.component';
+import { EventOrganizatorMyEventsComponent } from './pages/event_organization/myEvents/event-organizator-my-events.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -22,7 +23,7 @@ export const routes: Routes = [
     { path: 'editProfile', component: EditProfileComponent, canActivate: [UserAuthGuard]},
     { path: 'articlesDashboard', component: ArticlesDashboardComponent },
     { path: 'eventOrganizatorHomePage', component: EventOrganizatorHomepageComponent, canActivate: [UserAuthGuard]},
-    { path: 'eventOrganizatorReserveHotel', component: EventOrganizatorReserveHotelComponent, canActivate: [UserAuthGuard]},
+    { path: 'eventOrganizatorMyEvents', component: EventOrganizatorMyEventsComponent, canActivate: [UserAuthGuard]},
     { path: 'directorCreateProposal', component: DirectorCreateComponent, canActivate: [UserAuthGuard]},
     { path: 'voting', component: VotingPageComponent, canActivate: [UserAuthGuard]}
 ];
