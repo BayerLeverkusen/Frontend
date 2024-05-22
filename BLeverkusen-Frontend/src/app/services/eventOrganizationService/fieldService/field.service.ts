@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Hotel } from '../../../models/hotel';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Reservation } from '../../../models/reservation';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,8 @@ import { HttpClient } from '@angular/common/http';
 export class FieldService {
   private apiUrl = 'http://localhost:8082/api/field/getAll';
   private apiUrl2 = 'http://localhost:8082/api/field/reserve'; 
-  private apiUrl3 = 'http://localhost:8082/api/field/get';// Replace with your actual API endpoint
+  private apiUrl3 = 'http://localhost:8082/api/field/get';
+  private apiUrl4 = 'http://localhost:8082/api/reservation/getAll';// Replace with your actual API endpoint
 
   constructor(private http: HttpClient) {}
 
@@ -33,6 +35,11 @@ export class FieldService {
 
   getAll(): Observable<Hotel[]>{
     return this.http.get<Hotel[]>(this.apiUrl3);
+  }
+
+  getAllReservations(): Observable<Reservation[]>{
+    return this.http.get<Reservation[]>(this.apiUrl4);
+
   }
   
 }

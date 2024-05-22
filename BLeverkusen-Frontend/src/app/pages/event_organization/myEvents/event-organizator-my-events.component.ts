@@ -10,6 +10,7 @@ import { TransportService } from '../../../services/eventOrganizationService/tra
 import { FieldService } from '../../../services/eventOrganizationService/fieldService/field.service';
 import { forkJoin } from 'rxjs';
 import { Events } from '../../../models/event';
+import { Reservation } from '../../../models/reservation';
 
 @Component({
     selector: 'app-event-organizator-my-events',
@@ -23,8 +24,8 @@ import { Events } from '../../../models/event';
 export class EventOrganizatorMyEventsComponent implements OnInit {
   
   ngOnInit() {
-    this.hotleService.getHotels('Barcelona').subscribe({
-      next: (hotels) => this.hotels = hotels,
+    this.fieldService.getAllReservations().subscribe({
+      next: (reservations) => this.reservations = reservations,
       error: (err) => console.error('Failed to get users:', err)
     });
   }
@@ -35,6 +36,8 @@ export class EventOrganizatorMyEventsComponent implements OnInit {
   fields: Hotel[] = [];
 
   events: Events[] = [];
+
+  reservations: Reservation[] = [];
   
   
   
