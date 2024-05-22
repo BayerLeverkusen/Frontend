@@ -113,7 +113,7 @@
         <label class="block text-sm font-medium text-gray-700 mb-2">Country</label>
 
         <div class="custom-dropdown">
-          <select [(ngModel)]="country" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 rounded-md w-1/4 px-3 py-2 border border-gray-300">
+          <select [(ngModel)]="country" (ngModelChange)="onCountryChange($event)" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 rounded-md w-1/4 px-3 py-2 border border-gray-300">
             <option *ngFor="let name of countries" [value]="name" >
               {{ name }}
             </option>
@@ -121,12 +121,14 @@
         </div>
       </div>
 
+      
+
       <div class="mb-4">
         <label class="block text-sm font-medium text-gray-700 mb-2">City</label>
-
+      
         <div class="custom-dropdown">
           <select [(ngModel)]="city" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 rounded-md w-1/4 px-3 py-2 border border-gray-300">
-            <option *ngFor="let name of cities" [value]="name">
+            <option *ngFor="let name of cities[country] || []" [value]="name">
               {{ name }}
             </option>
           </select>

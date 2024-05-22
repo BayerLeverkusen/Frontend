@@ -21,21 +21,38 @@ import { FieldService } from '../../../services/eventOrganizationService/fieldSe
 export class EventOrganizatorHomepageComponent implements OnInit {
   
   ngOnInit() {
-    // Set the initial value based on gameType
-    this.gameType = 'Home';
-    if (this.gameType === 'Home') {
-      this.country = 'Germany';
-      this.city = 'Leverkusen';
-    }
+    // Initially set options (optional)
+    //this.country = this.countries[0]; // Default country
   }
 
   onGameTypeChange(newType: string) {
     this.gameType = newType;
-    // Optionally reset country if gameType changes later
-    if (this.gameType !== 'Home') {
-      this.country = '';
-      this.city = '';
+    this.filterCountryOptions(); // Update country options based on gameType
+    this.country = ''; // Reset selected country
+  }
+
+  onCountryChange(newCountry: string) {
+    this.country = newCountry;
+    this.filterCityOptions(); // Update city options based on selected country
+  }
+
+  filterCountryOptions() {
+    this.countries = ['Spain'];
+    if (this.gameType === 'Home') {
+      this.countries = ['Germany']; // Only allow Germany for Home games
+    } else {
+      this.countries = this.countries.slice(); // Reset to all countries for Away games
     }
+  }
+
+  filterCityOptions() {
+    this.cities = { // Cities mapped to countries
+      'Germany': ['Leverkusen'],
+      'Spain': ['Barcelona']
+    };
+    if (this.country) {
+      this.cities = { [this.country]: this.cities[this.country] }; // Filter cities for selected country
+    } 
   }
   
   password = '';
@@ -49,7 +66,11 @@ export class EventOrganizatorHomepageComponent implements OnInit {
   endDate = '';
   eventName = '';
   countries: string[] = ['Germany', 'Spain']; // Replace with your data
-  cities: string[] = [ 'Leverkusen', 'Barcelona']; // Replace with your data
+  //cities: string[] = [ 'Leverkusen', 'Barcelona'];
+  cities: { [country: string]: string[] } = { // Cities mapped to countries
+    'Germany': ['Leverkusen'],
+    'Spain': ['Barcelona']
+  }; // Replace with your data
   country: string = '';
   city: string = '';
   type: string = '';
