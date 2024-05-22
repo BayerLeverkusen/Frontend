@@ -18,8 +18,25 @@ import { FieldService } from '../../../services/eventOrganizationService/fieldSe
     
    
 })
-export class EventOrganizatorHomepageComponent  {
+export class EventOrganizatorHomepageComponent implements OnInit {
   
+  ngOnInit() {
+    // Set the initial value based on gameType
+    this.gameType = 'Home';
+    if (this.gameType === 'Home') {
+      this.country = 'Germany';
+      this.city = 'Leverkusen';
+    }
+  }
+
+  onGameTypeChange(newType: string) {
+    this.gameType = newType;
+    // Optionally reset country if gameType changes later
+    if (this.gameType !== 'Home') {
+      this.country = '';
+      this.city = '';
+    }
+  }
   
   password = '';
   firstName = '';
@@ -117,7 +134,7 @@ export class EventOrganizatorHomepageComponent  {
     this.startDate = this.convertDateFormat(this.startDate);
     this.endDate = this.convertDateFormat(this.endDate);
     //this.endDate = '05-27-2024';
-    this.type = 'HOTEL';
+    this.type = 'FIELD';
     this.fieldService.reserveHotel({resourceName,startDate:this.startDate,endDate:this.endDate,city:this.city,country:this.country,type:this.type});
     
 

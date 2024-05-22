@@ -7,8 +7,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class FieldService {
-  private apiUrl = 'http://localhost:8082/api/hotel/getAll';
-  private apiUrl2 = 'http://localhost:8082/api/hotel/reserve'; // Replace with your actual API endpoint
+  private apiUrl = 'http://localhost:8082/api/field/getAll';
+  private apiUrl2 = 'http://localhost:8082/api/field/reserve'; // Replace with your actual API endpoint
 
   constructor(private http: HttpClient) {}
 
