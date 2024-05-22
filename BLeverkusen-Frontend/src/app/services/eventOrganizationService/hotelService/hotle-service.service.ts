@@ -8,7 +8,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HotleServiceService {
   private apiUrl = 'http://localhost:8082/api/hotel/getAll';
-  private apiUrl2 = 'http://localhost:8082/api/hotel/reserve'; // Replace with your actual API endpoint
+  private apiUrl2 = 'http://localhost:8082/api/hotel/reserve';
+  private apiUrl3 = 'http://localhost:8082/api/hotel/get';// Replace with your actual API endpoint
+  // Replace with your actual API endpoint
 
   constructor(private http: HttpClient) {}
 
@@ -28,6 +30,10 @@ export class HotleServiceService {
       console.error('Error:', error);
       alert('Error, try again');
     });
+  }
+
+  getAll(): Observable<Hotel[]>{
+    return this.http.get<Hotel[]>(this.apiUrl3);
   }
   
 }

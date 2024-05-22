@@ -21,33 +21,18 @@ import { FieldService } from '../../../services/eventOrganizationService/fieldSe
 export class EventOrganizatorMyEventsComponent implements OnInit {
   
   ngOnInit() {
-    this.hotleService.getHotels('Barcelona').subscribe({
+    this.hotleService.getAll().subscribe({
       next: (hotels) => this.hotels = hotels,
       error: (err) => console.error('Failed to get users:', err)
     });
 
-    this.transportService.getHotels('Barcelona').subscribe({
-      next: (hotels) => this.hotels = hotels,
+    this.transportService.getAll().subscribe({
+      next: (transports) => this.transports = transports,
       error: (err) => console.error('Failed to get users:', err)
     });
 
-    this.fieldService.getHotels('Barcelona').subscribe({
-      next: (hotels) => this.hotels = hotels,
-      error: (err) => console.error('Failed to get users:', err)
-    });
-
-    this.hotleService.getHotels('Leverkusen').subscribe({
-      next: (hotels) => this.hotels = hotels,
-      error: (err) => console.error('Failed to get users:', err)
-    });
-
-    this.transportService.getHotels('Leverkusen').subscribe({
-      next: (hotels) => this.hotels = hotels,
-      error: (err) => console.error('Failed to get users:', err)
-    });
-
-    this.fieldService.getHotels('Leverkusen').subscribe({
-      next: (hotels) => this.hotels = hotels,
+    this.fieldService.getAll().subscribe({
+      next: (fields) => this.fields = fields,
       error: (err) => console.error('Failed to get users:', err)
     });
   }
@@ -76,8 +61,10 @@ export class EventOrganizatorMyEventsComponent implements OnInit {
   gameTypes: string[] = ['Home', 'Away'];
   gameType: string = '';
   minDate: string = '2024-05-23';
-  
+
   hotels: Hotel[] = [];
+  transports: Hotel[] = [];
+  fields: Hotel[] = [];
 
   events: Event[] = [];
   

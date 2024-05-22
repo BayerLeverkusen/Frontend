@@ -8,7 +8,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class FieldService {
   private apiUrl = 'http://localhost:8082/api/field/getAll';
-  private apiUrl2 = 'http://localhost:8082/api/field/reserve'; // Replace with your actual API endpoint
+  private apiUrl2 = 'http://localhost:8082/api/field/reserve'; 
+  private apiUrl3 = 'http://localhost:8082/api/field/get';// Replace with your actual API endpoint
 
   constructor(private http: HttpClient) {}
 
@@ -28,6 +29,10 @@ export class FieldService {
       console.error('Error:', error);
       alert('Error, try again');
     });
+  }
+
+  getAll(): Observable<Hotel[]>{
+    return this.http.get<Hotel[]>(this.apiUrl3);
   }
   
 }

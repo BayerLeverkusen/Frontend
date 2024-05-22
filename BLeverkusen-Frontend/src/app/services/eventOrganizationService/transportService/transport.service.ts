@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class TransportService {
   private apiUrl = 'http://localhost:8082/api/transport/getAll';
   private apiUrl2 = 'http://localhost:8082/api/transport/reserve'; // Replace with your actual API endpoint
-
+  private apiUrl3 = 'http://localhost:8082/api/transport/get';
   constructor(private http: HttpClient) {}
 
   getHotels(city: string): Observable<Hotel[]> {
@@ -28,6 +28,10 @@ export class TransportService {
       console.error('Error:', error);
       alert('Error, try again');
     });
+  }
+
+  getAll(): Observable<Hotel[]>{
+    return this.http.get<Hotel[]>(this.apiUrl3);
   }
   
 }
