@@ -15,6 +15,7 @@ import { DirectorCreateComponent } from './pages/director/director-create/direct
 import { VotingPageComponent } from './pages/board_member/voting-page/voting-page.component';
 import { LoanPageComponent } from './pages/director/loan-page/loan-page.component';
 import { PayoffloanComponent } from './pages/director/payoffloan/payoffloan.component';
+import { EventOrganizatorMyEventsComponent } from './pages/event_organization/myEvents/event-organizator-my-events.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -24,7 +25,7 @@ export const routes: Routes = [
     { path: 'editProfile', component: EditProfileComponent, canActivate: [UserAuthGuard]},
     { path: 'articlesDashboard', component: ArticlesDashboardComponent },
     { path: 'eventOrganizatorHomePage', component: EventOrganizatorHomepageComponent, canActivate: [UserAuthGuard]},
-    { path: 'eventOrganizatorReserveHotel', component: EventOrganizatorReserveHotelComponent, canActivate: [UserAuthGuard]},
+    { path: 'eventOrganizatorMyEvents', component: EventOrganizatorMyEventsComponent, canActivate: [UserAuthGuard]},
     { path: 'directorCreateProposal', component: DirectorCreateComponent, canActivate: [UserAuthGuard]},
     { path: 'voting', component: VotingPageComponent, canActivate: [UserAuthGuard]},
     { path: 'loan', component: LoanPageComponent, canActivate: [UserAuthGuard]},

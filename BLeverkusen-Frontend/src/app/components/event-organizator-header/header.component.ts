@@ -38,7 +38,7 @@ export class HeaderComponent {
       event.preventDefault();
     }
 
-    this.router.navigate(['/eventOrganizatorViewEvents']);
+    this.router.navigate(['/eventOrganizatorMyEvents']);
   }
 
   createEvent(event?: Event){
@@ -46,7 +46,7 @@ export class HeaderComponent {
       event.preventDefault();
     }
 
-    this.router.navigate(['/eventOrganizatorReserveHotel']);
+    this.router.navigate(['/eventOrganizatorHomePage']);
   }
 
   createTemplate(event?: Event){

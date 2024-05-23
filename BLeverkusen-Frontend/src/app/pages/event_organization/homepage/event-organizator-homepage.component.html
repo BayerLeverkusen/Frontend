@@ -12,15 +12,37 @@
 
   <main class="flex-grow bg-white rounded-lg shadow-md px-16 py-9 my-0" style="padding-top: 15vh;">
     <div>
-      
-      <div class="dialog hidden" *ngIf="isDialogOpen" style="overflow-y: auto;">
-        <p>Search for hotels based on your criteria!</p>
-        <div *ngIf="isDialogOpen">
+
+      <!-- HOTEL DIALOG -->
+      <div class="dialog hidden" *ngIf="isHotelDialogOpen" style="overflow-y: auto;">
+        
+        <div *ngIf="isHotelDialogOpen">
           <h2>Hotels in {{ city }}</h2>
           <ul *ngIf="hotels.length > 0">
             <li *ngFor="let hotel of hotels">
               
-              <button type="submit" class="small-light-gray-button ml-4" (click)="reserveHotel()" >
+              <button type="submit" class="small-light-gray-button ml-4" (click)="reserveHotel(hotel.hotelName)" >
+                {{ hotel.hotelName }} - {{ hotel.hotelPrice | currency:'EUR' }} per night (Rating: {{ hotel.hotelRating }})
+              </button>
+                
+              
+            </li>
+          </ul>
+          <p *ngIf="hotels.length === 0">No hotels found for {{ city }}</p>
+        </div>
+        
+        <button type="button" class="close" (click)="closeDialog()">Close</button>
+      </div>
+      <!-- TRANSPORT DIALOG -->
+
+      <div class="dialog hidden" *ngIf="isTransportDialogOpen" style="overflow-y: auto;">
+        
+        <div *ngIf="isTransportDialogOpen">
+          <h2>Hotels in {{ city }}</h2>
+          <ul *ngIf="hotels.length > 0">
+            <li *ngFor="let hotel of hotels">
+              
+              <button type="submit" class="small-light-gray-button ml-4" (click)="reserveTransport(hotel.hotelName)" >
                 {{ hotel.hotelName }} - {{ hotel.hotelPrice | currency:'EUR' }} per night (Rating: {{ hotel.hotelRating }})
               </button>
                 
@@ -33,6 +55,39 @@
         <button type="button" class="close" (click)="closeDialog()">Close</button>
       </div>
 
+      <!-- FIELD DIALOG -->
+      <div class="dialog hidden" *ngIf="isFieldDialogOpen" style="overflow-y: auto;">
+        
+        <div *ngIf="isFieldDialogOpen">
+          <h2>Hotels in {{ city }}</h2>
+          <ul *ngIf="hotels.length > 0">
+            <li *ngFor="let hotel of hotels">
+              
+              <button type="submit" class="small-light-gray-button ml-4" (click)="reserveField(hotel.hotelName)" >
+                {{ hotel.hotelName }} - {{ hotel.hotelPrice | currency:'EUR' }} per night (Rating: {{ hotel.hotelRating }})
+              </button>
+                
+              
+            </li>
+          </ul>
+          <p *ngIf="hotels.length === 0">No hotels found for {{ city }}</p>
+        </div>
+        
+        <button type="button" class="close" (click)="closeDialog()">Close</button>
+      </div>
+      <!-- END -->
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700 mb-2">Type</label>
+
+        <div class="custom-dropdown">
+          <select [(ngModel)]="gameType" (ngModelChange)="onGameTypeChange($event)" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 rounded-md w-1/4 px-3 py-2 border border-gray-300">
+            <option *ngFor="let name of gameTypes" [value]="name">
+              {{ name }}
+            </option>
+          </select>
+        </div>
+      </div>
+
       <div class="mb-4">
         <label class="block text-sm font-medium text-gray-700 mb-2">Event name</label>
 
@@ -43,14 +98,14 @@
       <div class="mb-4">
         <label class="block text-sm font-medium text-gray-700 mb-2">Start Date</label>
 
-        <input type="date" id="startDate" datepicker-format="mm/dd/yyyy" [(ngModel)]="startDate" class="w-1/4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <input type="date" id="startDate" min="2024-05-23" datepicker-format="mm-dd-yyyy" [(ngModel)]="startDate" class="w-1/4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
       </div>
 
       <div class="mb-4">
         <label class="block text-sm font-medium text-gray-700 mb-2">End Date</label>
 
-        <input type="date" id="startDate" datepicker-format="mm/dd/yyyy" [(ngModel)]="endDate" class="w-1/4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <input type="date" id="startDate" min="2024-05-23" datepicker-format="mm-dd-yyyy" [(ngModel)]="endDate" class="w-1/4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
       </div>
 
@@ -58,7 +113,7 @@
         <label class="block text-sm font-medium text-gray-700 mb-2">Country</label>
 
         <div class="custom-dropdown">
-          <select [(ngModel)]="country" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 rounded-md w-1/4 px-3 py-2 border border-gray-300">
+          <select [(ngModel)]="country" (ngModelChange)="onCountryChange($event)" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 rounded-md w-1/4 px-3 py-2 border border-gray-300">
             <option *ngFor="let name of countries" [value]="name" >
               {{ name }}
             </option>
@@ -66,28 +121,30 @@
         </div>
       </div>
 
+      
+
       <div class="mb-4">
         <label class="block text-sm font-medium text-gray-700 mb-2">City</label>
-
+      
         <div class="custom-dropdown">
           <select [(ngModel)]="city" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 rounded-md w-1/4 px-3 py-2 border border-gray-300">
-            <option *ngFor="let name of cities" [value]="name">
+            <option *ngFor="let name of cities[country] || []" [value]="name">
               {{ name }}
             </option>
           </select>
         </div>
       </div>
 
-      <button type="submit" class="big-light-gray-button" (click)="openDialog()" >
+      <button type="submit" class="big-light-gray-button" (click)="openHotelDialog()" [disabled]="!allInputsFilled()" [class.big-light-gray-button-disabled]="!allInputsFilled()" >
         Hotels
       </button>
-      <button type="submit" class="big-light-gray-button ml-4" (click)="transport()" [disabled]="!allInputsFilled()">
+      <button type="submit" class="big-light-gray-button ml-4" (click)="openTransportDialog()" [disabled]="!allInputsFilled() || this.gameType === 'Home'"   [class.big-light-gray-button-disabled]="!transportDisable()" [class.big-light-gray-button-disabledd]="!allInputsFilled()">
         Transports & Security
       </button>
-      <button type="submit" class="big-light-gray-button ml-4" (click)="playingFields()" [disabled]="!allInputsFilled()">
+      <button type="submit" class="big-light-gray-button ml-4" (click)="openFieldDialog()" [disabled]="!allInputsFilled()" [class.big-light-gray-button-disabled]="!allInputsFilled()">
         Playing fields
       </button>
-      
+      <button class="modify-button" (click)="finish()">Finish</button>
     </div>
   </main>
 

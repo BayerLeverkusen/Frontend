@@ -6,12 +6,11 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class HotleServiceService {
-  private apiUrl = 'http://localhost:8082/api/hotel/getAll';
-  private apiUrl2 = 'http://localhost:8082/api/hotel/reserve';
-  private apiUrl3 = 'http://localhost:8082/api/hotel/get';// Replace with your actual API endpoint
-  // Replace with your actual API endpoint
-
+export class TransportService {
+  private apiUrl = 'http://localhost:8082/api/transport/getAll';
+  private apiUrl2 = 'http://localhost:8082/api/transport/reserve'; // Replace with your actual API endpoint
+  private apiUrl3 = 'http://localhost:8082/api/transport/get';
+  private apiUrl4 = 'http://localhost:8082/api/reservation/delete';
   constructor(private http: HttpClient) {}
 
   getHotels(city: string): Observable<Hotel[]> {
@@ -34,6 +33,12 @@ export class HotleServiceService {
 
   getAll(): Observable<Hotel[]>{
     return this.http.get<Hotel[]>(this.apiUrl3);
+  }
+  sm: number[] = [];
+  
+  deleteR(credentials:{resIdh:number,resIdt:number,resIdf:number}){
+    
+   // return this.http.delete<any>(this.apiUrl4, credentials, { responseType: 'text' })
   }
   
 }
