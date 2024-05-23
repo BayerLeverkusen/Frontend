@@ -180,13 +180,35 @@ export class EventOrganizatorMyEventsComponent implements OnInit {
     return date instanceof Date && !isNaN(date.getTime());
   }
 
-  modify(resId: number)
+  modifyh(resId: number)
   {
-
+    this.isHotelDialogOpen = true;
+    this.hotleService.getHotels(this.city).subscribe({
+      next: (hotels) => this.hotels = hotels,
+      error: (err) => console.error('Failed to get users:', err)
+    });
   }
-
+  modifyt(resId: number)
+  {
+    this.isTransportDialogOpen = true;
+    this.transportService.getHotels(this.city).subscribe({
+      next: (hotels) => this.hotels = hotels,
+      error: (err) => console.error('Failed to get users:', err)
+    });
+  }
+  modifyf(resId: number)
+  {
+    this.isFieldDialogOpen = true;
+    this.fieldService.getHotels(this.city).subscribe({
+      next: (hotels) => this.hotels = hotels,
+      error: (err) => console.error('Failed to get users:', err)
+    });
+  }
+  reservationIdsToDelete: number[] = [];
   delete(resIdh: number, resIdt: number, resIdf: number)
   {
+    this.reservationIdsToDelete = [resIdh,resIdt,resIdf];
+    this.transportService.deleteR({resIdh,resIdt,resIdf});
 
   }
 }

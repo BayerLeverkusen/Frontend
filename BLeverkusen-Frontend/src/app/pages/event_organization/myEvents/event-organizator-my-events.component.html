@@ -25,7 +25,7 @@
                     <h3>Hotel</h3>
                     <p>{{ reservation.reservationHotelName }}</p>
                     <div class="button-container">
-                      <button class="modify-button" (click)="modify(reservation.reservationHotelId)">Modify</button>
+                      <button class="modify-button" (click)="modifyh(reservation.reservationHotelId)">Modify</button>
                       
                     </div>
                   </div>
@@ -33,7 +33,7 @@
                     <h3>Transport</h3>
                     <p>{{ reservation.reservationTransportName }}</p>
                     <div class="button-container">
-                      <button class="modify-button" (click)="modify(reservation.reservationTransportId)">Modify</button>
+                      <button class="modify-button" (click)="modifyt(reservation.reservationTransportId)">Modify</button>
                       
                     </div>
                   </div>
@@ -41,7 +41,7 @@
                     <h3>Playing Field</h3>
                     <p>{{ reservation.reservationFieldName }}</p>
                     <div class="button-container">
-                      <button class="modify-button" (click)="modify(reservation.reservationFieldId)">Modify</button>
+                      <button class="modify-button" (click)="modifyf(reservation.reservationFieldId)">Modify</button>
                       <button class="delete-button" (click)="delete(reservation.reservationHotelId,reservation.reservationTransportId,reservation.reservationFieldId)">Delete</button>
                     </div>
                   </div>
