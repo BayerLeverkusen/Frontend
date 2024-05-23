@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Inbox</title>
+  <title>Shop</title>
 </head>
 <body class="m-0 p-0">
   <div class="flex flex-col ">
@@ -11,12 +11,12 @@
     <app-header class="top-0 shadow-md w-full"
     [link1]="'Shop'" [route1]="'/shop'"
     [link2]="'Money'" [route2]="'/money'"
-    [link3]="'Inbox'" [route3]="'/inbox'"></app-header>
+    [link3]="'Inbox'" [route3]="'/inbox'"
+    ></app-header>
 
   </div>
   <!-- White canvas -->
   <main class="flex-grow bg-white rounded-lg shadow-md px-4 py-9 my-8 mx-8">
-    <app-message-list></app-message-list>
   </main>
 </body>
 </html>

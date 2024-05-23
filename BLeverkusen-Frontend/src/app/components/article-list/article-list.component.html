@@ -17,10 +17,10 @@
           <tbody class="bg-white divide-y divide-gray-200">
             <tr *ngFor="let article of articles" class="hover:bg-gray-100">
               <td class="px-6 py-4 whitespace-nowrap">{{ article.name }}</td>
-              <td class="px-6 py-4 whitespace-nowrap">{{ article.price }}</td>
+              <td class="px-6 py-cle4 whitespace-nowrap">{{ article.price }}</td>
               <td class="px-6 py-4 whitespace-nowrap">{{ article.description }}</td>
               <td class="px-6 py-4 whitespace-nowrap">
-                <button class="rounded-lg py-1.5 px-4 bg-white border-solid border border-neutral-900 font-medium text-neutral-700
+                <button (click)="promote(article.id)" class="rounded-lg py-1.5 px-4 bg-white border-solid border border-neutral-900 font-medium text-neutral-700
                                 hover:bg-neutral-800 hover:text-white">
                   Promote
                 </button>

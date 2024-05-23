@@ -16,6 +16,7 @@ import { ShopComponent } from './pages/fan/shop/shop.component';
 import { MoneyComponent } from './pages/fan/money/money.component';
 import { BuyComponent } from './pages/fan/buy/buy.component';
 import { InboxComponent } from './pages/fan/inbox/inbox.component';
+import { SinglemessageComponent } from './pages/fan/singlemessage/singlemessage.component';
 
 
 export const routes: Routes = [
@@ -32,5 +33,6 @@ export const routes: Routes = [
     { path: 'shop', component: ShopComponent}, // Marketing Manager 
     { path: 'money', component: MoneyComponent}, // Marketing Manager
     { path: 'buy/:id', component: BuyComponent}, // Marketing Manager
-    { path: 'inbox', component: InboxComponent} // Marketing Manager
+    { path: 'inbox', component: InboxComponent}, // Marketing Manager
+    { path: 'singlemessage/:id', component: SinglemessageComponent} // Marketing Manager
 ];

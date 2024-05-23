@@ -4,6 +4,7 @@ import { ArticleService } from '../../services/article-service/article-service.c
 import { EditArticleComponent } from '../../pages/marketing_manager/edit-article/edit-article.component';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { MessageServiceComponent } from '../../services/message-service/message-service.component';
 
 @Component({
   selector: 'app-article-list',
@@ -17,9 +18,13 @@ export class ArticleListComponent implements OnInit{
   showModal = false;
   delete_boolean = false; 
   id_final : number | null = null; 
+
+  title: string = ''; 
+  body: string = ''; 
+
   private articlesUrl = 'http://localhost:8083/api/marketingmanager/articles';
 
-  constructor(private router: Router, private articleService: ArticleService, private editArticleComponent: EditArticleComponent) {}
+  constructor(private messageService: MessageServiceComponent, private router: Router, private articleService: ArticleService, private editArticleComponent: EditArticleComponent) {}
 
   ngOnInit(): void {
     this.articleService.getAllArticles().subscribe({
@@ -55,5 +60,37 @@ export class ArticleListComponent implements OnInit{
     this.showModal = false;
     this.router.navigate(['/articlesDashboard']);
   }
+
+  promote(articleId: number, event?: Event) {
+    console.log("Pozvana sam"); 
+    // Function to generate a random character from the specified set
+    const getRandomChar = () => {
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        return chars.charAt(Math.floor(Math.random() * chars.length));
+        console.log("random su pozivi"); 
+    };
+
+    // Generate the random code with the first character being articleId
+    let randomCode = articleId.toString();
+    while (randomCode.length < 7) { // articleId + 6 more characters
+        randomCode += getRandomChar();
+    }
+
+    // Prepare the data with the promotion code as the body
+    const data = {
+        title: 'Promotion code',
+        body: randomCode
+    };
+
+    // Send the message via the messageService
+    this.messageService.addMessage(data).subscribe({
+        next: (response: any) => {
+        },
+        error: (err: any) => {
+            console.error('Failed to send message:', err);
+        }
+    });
+}
+
 
 }
