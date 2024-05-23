@@ -34,11 +34,44 @@ export class DirectorService {
     const url = 'http://localhost:8085/api/auth/getProposals';
     return this.http.get<budget[]>(url, { params });
   }
+  
+  getBalance()
+  {
+    const url = 'http://localhost:8085/api/auth/getBalance';
+    return this.http.get<any>(url);
+  }
+
+  getLoanAmt()
+  {
+    const url = 'http://localhost:8085/api/auth/getLoanAmt';
+    return this.http.get<any>(url);
+  }
+
+  payLoan()
+  {
+    return this.http.put<any>('http://localhost:8085/api/auth/payLoan',{})
+    .subscribe(response => {
+      console.log('Response:', response);
+    }, error => {
+      console.error('Error:', error);
+    });
+  }
 
   vote(credentials:{userId:string,proposalId:number})
   {
     return this.http.put<any>('http://localhost:8085/api/auth/vote', credentials)
     .subscribe(response => {
+      console.log('Response:', response);
+    }, error => {
+      console.error('Error:', error);
+    });
+  }
+
+  createLoan(ammount:string)
+  {
+    const body = { ammount: ammount };
+    const url = 'http://localhost:8085/api/auth/requestLoan';
+    return this.http.put<any>(url, body).subscribe(response => {
       console.log('Response:', response);
     }, error => {
       console.error('Error:', error);
