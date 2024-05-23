@@ -30,4 +30,10 @@ export class ArticleService {
   addArticle(data: { name: string; price: number; description: string;}) {
     return this.http.post<any>(this.articlesUrl, data);
   }
+
+  getArticleById(id: number): Observable<Article> {
+    return this.http.get<Article>(`${this.articlesUrl}/${id}`);
+  }
+
+
 }

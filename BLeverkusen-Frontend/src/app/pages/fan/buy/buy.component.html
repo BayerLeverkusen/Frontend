@@ -1,23 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shop</title>
-</head>
-<body class="m-0 p-0">
-  <div class="flex flex-col ">
-    <!-- Header -->
-    <app-header class="top-0 shadow-md w-full"
-    [link1]="'Shop'" [route1]="'/shop'"
-    [link2]="'Money'" [route2]="'/money'"
-    [link3]="'Inbox'" [route3]="'/inbox'"
-    ></app-header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shop</title>
+  </head>
+  <body class="m-0 p-0">
+    <div class="flex flex-col">
+      <!-- Header -->
+      <app-header
+        class="top-0 shadow-md w-full"
+        [link1]="'Shop'"
+        [route1]="'/shop'"
+        [link2]="'Money'"
+        [route2]="'/money'"
+        [link3]="'Inbox'"
+        [route3]="'/inbox'"
+        [link4]="'Cart'"
+        [route4]="'/cart'"
+      ></app-header>
+    </div>
+    <!-- White canvas -->
+    <main class="flex-grow bg-white rounded-lg shadow-md px-4 py-9 my-8 mx-8">
+      <div *ngIf="article" class="ml-8">
+        <h2 class="text-4xl font-bold mb-4">{{ article.name }}</h2>
+        <p class="text-xl font-regular mb-4">{{ article.description }}</p>
+        <hr class="mb-4 w-2/5 h-0.5 bg-neutral-200">
+        <p class="text-xl font-regular mb-4 font-medium">Price: ${{ article.price }}</p>
+        <hr class="mb-4 w-36 h-0.5 bg-neutral-200">
 
-  </div>
-  <!-- White canvas -->
-  <main class="flex-grow bg-white rounded-lg shadow-md px-4 py-9 my-8 mx-8">
-  </main>
-</body>
+        <div class="mb-4">
+          <label for="quantity" class="text-xl font-regular mb-4 mr-2"
+            >Quantity:</label
+          >
+          <input
+            type="number"
+            id="quantity"
+            [(ngModel)]="quantity"
+            min="1"
+            class="w-14 p-2 border border-gray-300 rounded-lg mr-2 text-center focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+          />
+        </div>
+        <hr class="mb-4 w-36 h-0.5 bg-neutral-200">
+
+        <div>
+          <button class="bg-neutral-800 text-white p-4 px-8 rounded-lg hover:bg-neutral-600">
+            Add to Cart
+          </button>
+        </div>
+      </div>
+    </main>
+  </body>
 </html>
-

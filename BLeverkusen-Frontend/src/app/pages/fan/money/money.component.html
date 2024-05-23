@@ -1,41 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shop</title>
-</head>
-<body class="m-0 p-0">
-  <div class="flex flex-col ">
-    <!-- Header -->
-    <app-header class="top-0 shadow-md w-full"
-    [link1]="'Shop'" [route1]="'/shop'"
-    [link2]="'Money'" [route2]="'/money'"
-    [link3]="'Inbox'" [route3]="'/inbox'"></app-header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shop</title>
+  </head>
+  <body class="m-0 p-0">
+    <div class="flex flex-col">
+      <!-- Header -->
+      <app-header
+        class="top-0 shadow-md w-full"
+        [link1]="'Shop'"
+        [route1]="'/shop'"
+        [link2]="'Money'"
+        [route2]="'/money'"
+        [link3]="'Inbox'"
+        [route3]="'/inbox'"
+        [link4]="'Cart'"
+        [route4]="'/cart'"
+      ></app-header>
+    </div>
+    <!-- White canvas -->
+    <main class="flex-grow bg-white rounded-lg shadow-md px-4 py-9 my-8 mx-8">
+      <h2 class="text-2xl font-bold mb-4">Your Balance</h2>
+      <p>{{ balance }}</p>
 
-  </div>
-  <!-- White canvas -->
-  <main class="flex-grow bg-white rounded-lg shadow-md px-4 py-9 my-8 mx-8">
-    <h2 class="text-2xl font-bold mb-4">Your Balance</h2>
-    <p>{{ balance }}</p>
-
-     <!-- Add Funds Form -->
-  <div class="text-center mb-4">
-    <h2 class="text-xl">+ Add funds</h2>
-    <input
-      type="number"
-      [(ngModel)]="fundsToAdd"
-      class="w-full p-2 border border-gray-300 rounded mt-2 mb-2"
-      placeholder="Enter amount"
-    />
-    <button
-      (click)="addFunds()"
-      class="px-4 py-2 bg-blue-500 text-white rounded"
-    >
-      Add
-    </button>
-  </div>
-  </main>
-</body>
+      <!-- Add Funds Form -->
+      <div class="text-center mb-4">
+        <h2 class="text-xl">+ Add funds</h2>
+        <input
+          type="number"
+          [(ngModel)]="fundsToAdd"
+          class="w-full p-2 border border-gray-300 rounded mt-2 mb-2"
+          placeholder="Enter amount"
+        />
+        <button
+          (click)="addFunds()"
+          class="px-4 py-2 bg-blue-500 text-white rounded"
+        >
+          Add
+        </button>
+      </div>
+    </main>
+  </body>
 </html>
-
