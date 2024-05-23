@@ -179,4 +179,14 @@ export class EventOrganizatorMyEventsComponent implements OnInit {
     // (e.g., using a regular expression or a library like moment.js)
     return date instanceof Date && !isNaN(date.getTime());
   }
+
+  modify(resId: number)
+  {
+
+  }
+
+  delete(resIdh: number, resIdt: number, resIdf: number)
+  {
+
+  }
 }

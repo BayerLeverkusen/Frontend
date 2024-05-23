@@ -17,17 +17,38 @@
         <p class="text-2xl font-medium mb-10">My Events</p>
         
         <div class="hotel-list">
-          
           <ul *ngIf="reservations.length > 0">
             <li *ngFor="let reservation of reservations">
-              
-              <button type="submit" class="small-light-gray-button ml-4"  >
-                {{ reservation.reservationHotelName}}  {{ reservation.reservationTransportName}}  {{ reservation.reservationFieldName}} 
-              </button>
-                
-              
+              <div class="event-details">
+                <div class="event-rectangle">
+                  <div class="segment segment-hotel">
+                    <h3>Hotel</h3>
+                    <p>{{ reservation.reservationHotelName }}</p>
+                    <div class="button-container">
+                      <button class="modify-button" (click)="modify(reservation.reservationHotelId)">Modify</button>
+                      
+                    </div>
+                  </div>
+                  <div class="segment segment-transport">
+                    <h3>Transport</h3>
+                    <p>{{ reservation.reservationTransportName }}</p>
+                    <div class="button-container">
+                      <button class="modify-button" (click)="modify(reservation.reservationTransportId)">Modify</button>
+                      
+                    </div>
+                  </div>
+                  <div class="segment segment-field">
+                    <h3>Playing Field</h3>
+                    <p>{{ reservation.reservationFieldName }}</p>
+                    <div class="button-container">
+                      <button class="modify-button" (click)="modify(reservation.reservationFieldId)">Modify</button>
+                      <button class="delete-button" (click)="delete(reservation.reservationHotelId,reservation.reservationTransportId,reservation.reservationFieldId)">Delete</button>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
             </li>
-            
           </ul>
           <p *ngIf="reservations.length === 0">No hotels found for {{ city }}</p>
         </div>

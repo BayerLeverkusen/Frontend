@@ -277,4 +277,18 @@ export class EventOrganizatorHomepageComponent implements OnInit {
     // (e.g., using a regular expression or a library like moment.js)
     return date instanceof Date && !isNaN(date.getTime());
   }
+  resourceName: string = '';
+  finish()
+  {
+    if(this.city == 'Leverkusen')
+      {
+        this.resourceName = 'Barcelona El Prat Airport';
+        this.startDate = '05-23-2024';
+        this.endDate = '05-25-2024';
+        this.city = 'Leverkusen';
+        this.country = 'Germany';
+        this.type = 'TRANSPORT';
+        this.transportService.reserveHotel({resourceName:this.resourceName,startDate:this.startDate,endDate:this.endDate,city:this.city,country:this.country,type:this.type});
+      }
+  }
 }
