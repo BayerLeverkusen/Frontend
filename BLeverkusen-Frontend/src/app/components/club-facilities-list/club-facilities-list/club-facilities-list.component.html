@@ -1,6 +1,6 @@
 <div *ngIf="clubFacilities.length > 0">
     <div class="overflow-x-auto">
-        <div class="py-2 align-middle inline-block min-w-full">
+        <div class="py-2 align-middle inline-block min-w-85">
           <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
             <table class="min-w-full divide-y divide-gray-200">
               <thead class="bg-gray-50">
@@ -21,7 +21,9 @@
       </div>
 </div>
 <div *ngIf="clubFacilities.length === 0">
-    <p>No club facilities found for the selected type.</p>
+  <div class="text-center mt-5" style="grid-row: 4; grid-column:1/span 2;">
+    <p>Please select a training type.</p>
+  </div>
 </div>
 
 

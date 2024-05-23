@@ -13,6 +13,7 @@
     </app-header>
 
     <div style="display: grid; grid-template-rows: auto auto; grid-template-columns: auto auto; width: 100%; padding-top: 15vh;">
+
         <div style="margin-left: 10vw;  padding: 20px; text-align: center; grid-row:1; grid-column:1;">
             <div class="flex flex-col items-center justify-center">
                 <label class="text-2xl mb-2">
@@ -80,7 +81,7 @@
             </label>
         </div>
 
-        <div class="dark:border-gray-800 mt-5" style="text-align: center; grid-row: 4; grid-column:1/span 2;">
+        <div *ngIf="isClubFacilitySelected; else noFacilitySelected" class="dark:border-gray-800 mt-5" style="text-align: center; grid-row: 4; grid-column:1/span 2;">
             <ul id="timetable" class="flex justify-center items-center">
                 <li style="margin-left: 2vw; margin-right: 2vw;">
                     <input type="radio" id="7-am" value="07:00" class="hidden peer" name="timetable" (click)="selectTime('07:00')">
@@ -127,7 +128,13 @@
             </ul>
         </div>
 
-        <div class="dark:border-gray-800 mt-5" style="text-align: center; grid-row: 5; grid-column:1/span 2;">
+        <ng-template #noFacilitySelected>
+            <div class="text-center mt-5" style="grid-row: 4; grid-column:1/span 2;">
+                <p>Please select the room where the training will be held before picking the time.</p>
+            </div>
+        </ng-template>
+
+        <div *ngIf="isClubFacilitySelected;" class="dark:border-gray-800 mt-5" style="text-align: center; grid-row: 5; grid-column:1/span 2;">
             <ul id="timetable" class="flex justify-center items-center">
                 <li style="margin-left: 2vw; margin-right: 2vw;">
                     <input type="radio" id="10-am" value="10:00" class="hidden peer" name="timetable" (click)="selectTime('10:00')">

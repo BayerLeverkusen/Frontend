@@ -25,6 +25,7 @@ export class CreateTrainingComponent implements OnInit, OnDestroy {
   trainingsByDate: any[] = [];
   unavailablePlayerIds: number[] = [];
   clubFacilityIdSubscription: Subscription = new Subscription;
+  isClubFacilitySelected = false;
 
   constructor(
     private clubFacilityService: ClubFacilityService,
@@ -35,11 +36,13 @@ export class CreateTrainingComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.clubFacilityIdSubscription = this.clubFacilityService.selectedClubFacilityId$.subscribe(id => {
-      if (id !== -1) {
+      this.isClubFacilitySelected = id !== -1;
+      if (this.isClubFacilitySelected) {
         this.fetchExistingTrainings();
       }
     });
     this.setMinDate();
+    this.setDefaultDate();
   }
 
   ngOnDestroy(): void {
@@ -52,6 +55,10 @@ export class CreateTrainingComponent implements OnInit, OnDestroy {
     if (dateInput) {
       this.renderer.setAttribute(dateInput, 'min', today);
     }
+  }
+
+  setDefaultDate(): void {
+    this.selectedDate = new Date().toISOString().split('T')[0];
   }
 
   toggleDropdown() {
