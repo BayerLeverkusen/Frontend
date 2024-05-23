@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Hotel } from '../../../models/hotel';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { DelRequest } from '../../../models/delRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -36,9 +37,8 @@ export class TransportService {
   }
   sm: number[] = [];
   
-  deleteR(credentials:{resIdh:number,resIdt:number,resIdf:number}){
-    
-   // return this.http.delete<any>(this.apiUrl4, credentials, { responseType: 'text' })
+  deleteR(delRequests: DelRequest): Observable<void> {
+    return this.http.request<void>('delete', this.apiUrl4, { body: delRequests });
   }
   
 }

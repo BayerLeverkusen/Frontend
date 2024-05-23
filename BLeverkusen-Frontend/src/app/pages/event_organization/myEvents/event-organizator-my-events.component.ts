@@ -11,7 +11,7 @@ import { FieldService } from '../../../services/eventOrganizationService/fieldSe
 import { forkJoin } from 'rxjs';
 import { Events } from '../../../models/event';
 import { Reservation } from '../../../models/reservation';
-
+import { DelRequest } from '../../../models/delRequest';
 @Component({
     selector: 'app-event-organizator-my-events',
     standalone: true,
@@ -204,11 +204,19 @@ export class EventOrganizatorMyEventsComponent implements OnInit {
       error: (err) => console.error('Failed to get users:', err)
     });
   }
-  reservationIdsToDelete: number[] = [];
+  
   delete(resIdh: number, resIdt: number, resIdf: number)
   {
-    this.reservationIdsToDelete = [resIdh,resIdt,resIdf];
-    this.transportService.deleteR({resIdh,resIdt,resIdf});
+    const delRequest: DelRequest = {
+      idRH: resIdh,
+      idRT: resIdt,
+      idRF: resIdf
+    };
 
+    this.transportService.deleteR(delRequest).subscribe(() => {
+      console.log('Reservation deleted successfully');
+    }, error => {
+      console.error('Error deleting reservation:', error);
+    });
   }
 }
