@@ -1,1 +1,65 @@
-<p>cart works!</p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart</title>
+  </head>
+  <body class="m-0 p-0">
+    <div class="flex flex-col">
+      <!-- Header -->
+      <app-header
+        class="top-0 shadow-md w-full"
+        [link1]="'Shop'"
+        [route1]="'/shop'"
+        [link2]="'Money'"
+        [route2]="'/money'"
+        [link3]="'Inbox'"
+        [route3]="'/inbox'"
+        [link4]="'Cart'"
+        [route4]="'/cart'"
+      ></app-header>
+    </div>
+    <!-- White canvas -->
+    <main class="flex-grow bg-white rounded-lg shadow-md px-4 py-9 my-8 mx-8">
+      <div *ngIf="cartItems.length > 0; else emptyCart">
+        <div class="flex justify-between items-center mb-4">
+          <div class="text-3xl font-bold">
+            Total amount to pay: ${{ getTotalAmount() }}
+          </div>
+          <button class="bg-neutral-800 text-white p-4 px-8 rounded-lg hover:bg-neutral-600">Buy</button>
+        </div>
+        
+        <table class="min-w-full bg-white border border-gray-300">
+          <thead>
+            <tr>
+              <th class="py-2 px-4 border-b">Name</th>
+              <th class="py-2 px-4 border-b">Description</th>
+              <th class="py-2 px-4 border-b">Price</th>
+              <th class="py-2 px-4 border-b">Quantity</th>
+              <th class="py-2 px-4 border-b">Total Price</th>
+              <th class="py-2 px-4 border-b">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of cartItems">
+              <td class="py-2 px-4 border-b">{{ item.article.name }}</td>
+              <td class="py-2 px-4 border-b">{{ item.article.description }}</td>
+              <td class="py-2 px-4 border-b">${{ item.article.price }}</td>
+              <td class="py-2 px-4 border-b">{{ item.quantity }}</td>
+              <td class="py-2 px-4 border-b">${{ getTotalPrice(item) }}</td>
+              <td class="py-2 px-4 border-b">
+                <button (click)="removeItem(item.article.id)" class="bg-red-500 text-white p-2 rounded-lg hover:bg-red-700">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <ng-template #emptyCart>
+        <p>Your cart is empty.</p>
+      </ng-template>
+      
+    </main>
+  </body>
+</html>

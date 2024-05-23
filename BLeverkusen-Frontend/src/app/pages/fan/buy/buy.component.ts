@@ -5,6 +5,7 @@ import { HeaderComponent } from '../../../components/admin-header/header.compone
 import { ArticleService } from '../../../services/article-service/article-service.component';
 import { Article } from '../../../models/article';
 import { FormsModule } from '@angular/forms';
+import { CartServiceComponent } from '../../../services/cart-service/cart-service.component';
 
 @Component({
   selector: 'app-buy',
@@ -21,7 +22,10 @@ export class BuyComponent implements OnInit {
   article: Article | undefined; 
   quantity: number = 1; 
 
-  constructor(private router: Router, private route: ActivatedRoute, private articleService: ArticleService) {}
+  constructor(private router: Router,
+    private route: ActivatedRoute,
+    private articleService: ArticleService,
+    private cartService: CartServiceComponent) {}
 
   ngOnInit(): void {
     this.currentRoute = this.route.snapshot.url.join('/'); 
@@ -44,6 +48,13 @@ export class BuyComponent implements OnInit {
         console.error('Error fetching article details:', error);
       }
     );
+  }
+
+  addToCart(): void {
+    if (this.article) {
+      this.cartService.addToCart(this.article, this.quantity);
+      console.log(`Added ${this.quantity} of article ${this.article.name} to the cart.`);
+    }
   }
 
 }
