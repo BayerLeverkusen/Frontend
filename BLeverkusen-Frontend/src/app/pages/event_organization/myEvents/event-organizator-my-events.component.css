@@ -111,6 +111,22 @@ body {
   
 }
 
+.small-light-gray-button2 {
+  width: 90%;
+  height: 100px;
+  background-color: #ffffff;
+  border: 1px solid #1f1f1f;
+  color: #1f1f1f;
+  padding: 16px;
+  border-radius: 8px;
+  margin-top: 16px;
+  margin-bottom: 24px;
+  
+  text-align: top;
+  
+  
+}
+
 .dialog {
   position: fixed;
   top: 50%;
@@ -146,9 +162,7 @@ body {
   text-align: top;
 }
 
-.hotel-list {
-  /* Existing styles for the list */
-}
+
 
 .event-details {
   display: flex; /* Allow segments and buttons to stack horizontally */

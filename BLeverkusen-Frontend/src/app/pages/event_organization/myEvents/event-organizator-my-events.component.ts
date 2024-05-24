@@ -12,6 +12,8 @@ import { forkJoin } from 'rxjs';
 import { Events } from '../../../models/event';
 import { Reservation } from '../../../models/reservation';
 import { DelRequest } from '../../../models/delRequest';
+import { ReservationService } from '../../../services/eventOrganizationService/reservationService/reservation.service';
+import { ModifyRequest } from '../../../models/modifyRequest';
 @Component({
     selector: 'app-event-organizator-my-events',
     standalone: true,
@@ -60,6 +62,7 @@ export class EventOrganizatorMyEventsComponent implements OnInit {
   gameTypes: string[] = ['Home', 'Away'];
   gameType: string = '';
   minDate: string = '2024-05-23';
+  resID: number = 0;
 
   
   
@@ -71,7 +74,8 @@ export class EventOrganizatorMyEventsComponent implements OnInit {
   constructor(
     private hotleService: HotleServiceService ,
     private transportService: TransportService ,
-    private fieldService: FieldService 
+    private fieldService: FieldService ,
+    private reservationService: ReservationService
   ) { }
 
   convertDateFormat(dateString: string): string {
@@ -180,26 +184,29 @@ export class EventOrganizatorMyEventsComponent implements OnInit {
     return date instanceof Date && !isNaN(date.getTime());
   }
 
-  modifyh(resId: number)
+  modifyh(resId:number,city: string)
   {
+    this.resID = resId;
     this.isHotelDialogOpen = true;
-    this.hotleService.getHotels(this.city).subscribe({
+    this.hotleService.getHotels(city).subscribe({
       next: (hotels) => this.hotels = hotels,
       error: (err) => console.error('Failed to get users:', err)
     });
   }
-  modifyt(resId: number)
+  modifyt(resId:number,city: string)
   {
+    this.resID = resId;
     this.isTransportDialogOpen = true;
-    this.transportService.getHotels(this.city).subscribe({
+    this.transportService.getHotels(city).subscribe({
       next: (hotels) => this.hotels = hotels,
       error: (err) => console.error('Failed to get users:', err)
     });
   }
-  modifyf(resId: number)
+  modifyf(resId:number,city: string)
   {
+    this.resID = resId;
     this.isFieldDialogOpen = true;
-    this.fieldService.getHotels(this.city).subscribe({
+    this.fieldService.getHotels(city).subscribe({
       next: (hotels) => this.hotels = hotels,
       error: (err) => console.error('Failed to get users:', err)
     });
@@ -218,5 +225,39 @@ export class EventOrganizatorMyEventsComponent implements OnInit {
     }, error => {
       console.error('Error deleting reservation:', error);
     });
+  }
+
+  modifyH()
+  {
+    const validationErrors = this.validateDates(this.startDate, this.endDate);
+    if (validationErrors.length > 0) {
+      // Display error messages to the user
+      console.error('Invalid date selection:', validationErrors.join(', ')); 
+      alert('Invalid date selection');// Log errors for debugging
+      // Consider using a user-friendly error notification mechanism (e.g., toaster, modal)
+      return; // Prevent hotel reservation if validation fails
+    }
+    
+    
+    this.startDate = this.convertDateFormat(this.startDate);
+    this.endDate = this.convertDateFormat(this.endDate);
+    //this.endDate = '05-27-2024';
+    const modifyRequest: ModifyRequest = {
+      resID: this.resID,
+      startDate: this.startDate,
+      endDate: this.endDate
+    };
+    this.reservationService.modifyH({resID:this.resID,startDate:this.startDate,endDate:this.endDate});
+    
+  }
+  
+  modifyT()
+  {
+    
+  }
+  
+  modifyF()
+  {
+    
   }
 }
