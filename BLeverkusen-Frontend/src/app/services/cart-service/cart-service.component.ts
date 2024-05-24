@@ -38,4 +38,8 @@ export class CartServiceComponent {
     this.cartItemsSubject.next([...updatedItems]);
   }
 
+  clearCart(): void {
+    this.cartItemsSubject.next([]);
+  }
+
 }
