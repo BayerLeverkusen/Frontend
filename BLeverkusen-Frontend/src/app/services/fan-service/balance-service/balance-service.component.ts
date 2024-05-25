@@ -25,6 +25,4 @@ export class BalanceServiceComponent {
   addFunds(amount: number): Observable<void> {
     return this.http.post<void>(`${this.balanceUrl}/add`, { amount });
   }
-
-
 }
