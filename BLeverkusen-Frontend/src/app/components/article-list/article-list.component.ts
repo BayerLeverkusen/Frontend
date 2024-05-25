@@ -62,35 +62,36 @@ export class ArticleListComponent implements OnInit{
   }
 
   promote(articleId: number, event?: Event) {
-    console.log("Pozvana sam"); 
     // Function to generate a random character from the specified set
     const getRandomChar = () => {
-        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        return chars.charAt(Math.floor(Math.random() * chars.length));
-        console.log("random su pozivi"); 
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      return chars.charAt(Math.floor(Math.random() * chars.length));
     };
-
-    // Generate the random code with the first character being articleId
-    let randomCode = articleId.toString();
-    while (randomCode.length < 7) { // articleId + 6 more characters
-        randomCode += getRandomChar();
-    }
-
+  
+    // Discount percentage (20%)
+    const discountPercentage = 20;
+    const discountString = discountPercentage.toString().padStart(2, '0');
+  
+    // Generate the promotion code
+    const promoCode = `${articleId}${discountString}${getRandomChar()}${getRandomChar()}${getRandomChar()}`;
+  
     // Prepare the data with the promotion code as the body
     const data = {
-        title: 'Promotion code',
-        body: randomCode
+      title: 'Promotion code',
+      body: promoCode
     };
-
+  
     // Send the message via the messageService
     this.messageService.addMessage(data).subscribe({
-        next: (response: any) => {
-        },
-        error: (err: any) => {
-            console.error('Failed to send message:', err);
-        }
+      next: (response: any) => {
+        console.log('Promotion code sent successfully:', promoCode);
+      },
+      error: (err: any) => {
+        console.error('Failed to send message:', err);
+      }
     });
-}
+  }
+  
 
 
 }
