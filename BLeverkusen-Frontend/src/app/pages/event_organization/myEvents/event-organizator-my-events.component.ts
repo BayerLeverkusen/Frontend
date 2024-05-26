@@ -229,7 +229,7 @@ export class EventOrganizatorMyEventsComponent implements OnInit {
 
   modifyHh(resname:string)
   {
-    const validationErrors = this.validateDates(this.startDate, this.endDate);
+    
     
     
     
@@ -242,18 +242,38 @@ export class EventOrganizatorMyEventsComponent implements OnInit {
       startDate: this.startDate,
       endDate: this.endDate
     };
-    console.log(this.resID);
+    alert("blea");
     this.reservationService.modifyH(modifyRequest);
     
   }
   
-  modifyT()
+  modifyTt(resname:string)
   {
-    
+    this.startDate = this.convertDateFormat(this.startDate);
+    this.endDate = this.convertDateFormat(this.endDate);
+    //this.endDate = '05-27-2024';
+    const modifyRequest: ModifyRequest = {
+      resID: this.resID,
+      resName: resname,
+      startDate: this.startDate,
+      endDate: this.endDate
+    };
+    alert("blea");
+    this.reservationService.modifyH(modifyRequest);
   }
   
-  modifyF()
+  modifyFf(resname:string)
   {
-    
+    this.startDate = this.convertDateFormat(this.startDate);
+    this.endDate = this.convertDateFormat(this.endDate);
+    //this.endDate = '05-27-2024';
+    const modifyRequest: ModifyRequest = {
+      resID: this.resID,
+      resName: resname,
+      startDate: this.startDate,
+      endDate: this.endDate
+    };
+    alert("blea");
+    this.reservationService.modifyH(modifyRequest);
   }
 }

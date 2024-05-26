@@ -57,11 +57,5 @@ export class ReservationService {
     
   }
   
-  modifyT(){
-
-  }
-
-  modifyF(){
-
-  }
+  
 }
