@@ -227,16 +227,10 @@ export class EventOrganizatorMyEventsComponent implements OnInit {
     });
   }
 
-  modifyH()
+  modifyHh(resname:string)
   {
     const validationErrors = this.validateDates(this.startDate, this.endDate);
-    if (validationErrors.length > 0) {
-      // Display error messages to the user
-      console.error('Invalid date selection:', validationErrors.join(', ')); 
-      alert('Invalid date selection');// Log errors for debugging
-      // Consider using a user-friendly error notification mechanism (e.g., toaster, modal)
-      return; // Prevent hotel reservation if validation fails
-    }
+    
     
     
     this.startDate = this.convertDateFormat(this.startDate);
@@ -244,10 +238,12 @@ export class EventOrganizatorMyEventsComponent implements OnInit {
     //this.endDate = '05-27-2024';
     const modifyRequest: ModifyRequest = {
       resID: this.resID,
+      resName: resname,
       startDate: this.startDate,
       endDate: this.endDate
     };
-    this.reservationService.modifyH({resID:this.resID,startDate:this.startDate,endDate:this.endDate});
+    console.log(this.resID);
+    this.reservationService.modifyH(modifyRequest);
     
   }
   

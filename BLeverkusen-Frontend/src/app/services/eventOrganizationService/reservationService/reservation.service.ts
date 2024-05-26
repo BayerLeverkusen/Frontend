@@ -13,6 +13,7 @@ export class ReservationService {
   private apiUrl2 = 'http://localhost:8082/api/transport/reserve'; // Replace with your actual API endpoint
   private apiUrl3 = 'http://localhost:8082/api/transport/get';
   private apiUrl4 = 'http://localhost:8082/api/reservation/delete';
+  private apiUrl5 = 'http://localhost:8082/api/reservation/modify';
   constructor(private http: HttpClient) {}
 
   getHotels(city: string): Observable<Hotel[]> {
@@ -42,8 +43,18 @@ export class ReservationService {
     return this.http.request<void>('delete', this.apiUrl4, { body: delRequests });
   }
 
-  modifyH(modifyRequest: ModifyRequest): Observable<void> {
-    return this.http.request<void>('patch',this.apiUrl,{body: modifyRequest})
+  modifyH(modifyRequest: ModifyRequest){
+    alert('Successfully reserved');
+    
+    return this.http.post<any>(this.apiUrl5, modifyRequest)
+    .subscribe(response => {
+      console.log('Response:', response);
+      alert('Successfully reserved');
+    }, error => {
+      console.error('Error:', error);
+      alert('Error, try again');
+    });
+    
   }
   
   modifyT(){

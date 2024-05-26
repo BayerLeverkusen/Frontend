@@ -86,7 +86,7 @@
           <ul *ngIf="hotels.length > 0">
             <li *ngFor="let hotel of hotels">
               
-              <button type="submit" class="small-light-gray-button2 ml-4" click="modifyH()" >
+              <button type="submit" class="small-light-gray-button2 ml-4" click="modifyHh(hotel.hotelName)" >
                 {{ hotel.hotelName }} - {{ hotel.hotelPrice | currency:'EUR' }} per night (Rating: {{ hotel.hotelRating }})
               </button>
                 
