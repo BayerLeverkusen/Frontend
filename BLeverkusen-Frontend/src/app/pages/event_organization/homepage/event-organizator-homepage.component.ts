@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 import { Hotel } from '../../../models/hotel';
 import { TransportService } from '../../../services/eventOrganizationService/transportService/transport.service';
 import { FieldService } from '../../../services/eventOrganizationService/fieldService/field.service';
+import { ReservationService } from '../../../services/eventOrganizationService/reservationService/reservation.service';
+import { DateRequest } from '../../../models/dateRequest';
 
 @Component({
     selector: 'app-event-organizator-homepage',
@@ -90,7 +92,9 @@ export class EventOrganizatorHomepageComponent implements OnInit {
   constructor(
     private hotleService: HotleServiceService ,
     private transportService: TransportService ,
-    private fieldService: FieldService 
+    private fieldService: FieldService ,
+    private reservationService: ReservationService
+
   ) { }
 
   convertDateFormat(dateString: string): string {
@@ -116,7 +120,20 @@ export class EventOrganizatorHomepageComponent implements OnInit {
     this.endDate = this.convertDateFormat(this.endDate);
     //this.endDate = '05-27-2024';
     this.type = 'HOTEL';
-    this.hotleService.reserveHotel({resourceName,startDate:this.startDate,endDate:this.endDate,city:this.city,country:this.country,type:this.type});
+    const dateRequest: DateRequest = {
+      startingDate : this.startDate,
+      endingDate : this.endDate,
+      type : this.type
+    };
+    const isDatesValid = this.reservationService.validateDates(dateRequest);
+    console.log("{isDateValid:}",isDatesValid);
+    if(isDatesValid)
+      {
+        this.hotleService.reserveHotel({resourceName,startDate:this.startDate,endDate:this.endDate,city:this.city,country:this.country,type:this.type});
+
+      }else{
+      alert('Reservations overlaping');
+    }
     ////////
     
     
@@ -138,7 +155,18 @@ export class EventOrganizatorHomepageComponent implements OnInit {
     this.endDate = this.convertDateFormat(this.endDate);
     //this.endDate = '05-27-2024';
     this.type = 'TRANSPORT';
-    this.transportService.reserveHotel({resourceName,startDate:this.startDate,endDate:this.endDate,city:this.city,country:this.country,type:this.type});
+    const dateRequest: DateRequest = {
+      startingDate : this.startDate,
+      endingDate : this.endDate,
+      type : this.type
+    };
+    if(this.reservationService.validateDates(dateRequest))
+      {
+        this.transportService.reserveHotel({resourceName,startDate:this.startDate,endDate:this.endDate,city:this.city,country:this.country,type:this.type});
+
+      }else{
+        alert('Reservations overlaping');
+      }
     
   }
 
@@ -156,7 +184,19 @@ export class EventOrganizatorHomepageComponent implements OnInit {
     this.endDate = this.convertDateFormat(this.endDate);
     //this.endDate = '05-27-2024';
     this.type = 'FIELD';
-    this.fieldService.reserveHotel({resourceName,startDate:this.startDate,endDate:this.endDate,city:this.city,country:this.country,type:this.type});
+    const dateRequest: DateRequest = {
+      startingDate : this.startDate,
+      endingDate : this.endDate,
+      type : this.type
+    };
+    if(this.reservationService.validateDates(dateRequest))
+      {
+        this.fieldService.reserveHotel({resourceName,startDate:this.startDate,endDate:this.endDate,city:this.city,country:this.country,type:this.type});
+        
+      }
+    else{
+      alert('Reservations overlaping');
+    }
     
 
   }

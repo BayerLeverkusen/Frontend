@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { DelRequest } from '../../../models/delRequest';
 import { ModifyRequest } from '../../../models/modifyRequest';
+import { DateRequest } from '../../../models/dateRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class ReservationService {
   private apiUrl3 = 'http://localhost:8082/api/transport/get';
   private apiUrl4 = 'http://localhost:8082/api/reservation/delete';
   private apiUrl5 = 'http://localhost:8082/api/reservation/modify';
+  private apiUrl6 = 'http://localhost:8082/api/reservation/validateDate';
   constructor(private http: HttpClient) {}
 
   getHotels(city: string): Observable<Hotel[]> {
@@ -55,6 +57,19 @@ export class ReservationService {
       alert('Error, try again');
     });
     
+  }
+
+  validateDates(dateRequest: DateRequest){
+
+    
+    return this.http.post<any>(this.apiUrl6, dateRequest)
+    .subscribe(response => {
+      console.log('Response:', response);
+      alert('Successfully reserved');
+    }, error => {
+      console.error('Error:', error);
+      alert('Error, try again');
+    });
   }
   
   
