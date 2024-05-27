@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Hotel } from '../../../models/hotel';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { DelRequest } from '../../../models/delRequest';
 import { ModifyRequest } from '../../../models/modifyRequest';
@@ -59,18 +59,24 @@ export class ReservationService {
     
   }
 
-  validateDates(dateRequest: DateRequest){
-
-    
-    return this.http.post<any>(this.apiUrl6, dateRequest)
-    .subscribe(response => {
+  async validateDates(dateRequest: DateRequest): Promise<boolean> {
+    try {
+      const response$ = await this.http.post<boolean>(this.apiUrl6, dateRequest);
+      const response = await response$.pipe(
+        map(data => data) // Extract data from the observable
+      ).toPromise();
       console.log('Response:', response);
-      alert('Successfully reserved');
-    }, error => {
+      if (response === undefined) {
+        throw new Error('Unexpected response format: data is undefined'); // Or return false
+      }
+      return response;
+    } catch (error) {
       console.error('Error:', error);
-      alert('Error, try again');
-    });
+      // Handle errors gracefully, return false or throw an informative error
+      return false;
+    }
   }
+  
   
   
 }

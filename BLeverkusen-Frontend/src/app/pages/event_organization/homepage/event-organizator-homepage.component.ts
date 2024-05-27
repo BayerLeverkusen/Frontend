@@ -105,7 +105,8 @@ export class EventOrganizatorHomepageComponent implements OnInit {
     return `${month}-${day}-${year}`;
   }
 
-  reserveHotel(resourceName: string) {
+  async reserveHotel(resourceName: string): Promise<void> {
+    // ... (optional front-end validation logic)
     const validationErrors = this.validateDates(this.startDate, this.endDate);
 
     if (validationErrors.length > 0) {
@@ -115,33 +116,48 @@ export class EventOrganizatorHomepageComponent implements OnInit {
       // Consider using a user-friendly error notification mechanism (e.g., toaster, modal)
       return; // Prevent hotel reservation if validation fails
     }
-    ////////
-    this.startDate = this.convertDateFormat(this.startDate);
-    this.endDate = this.convertDateFormat(this.endDate);
-    //this.endDate = '05-27-2024';
-    this.type = 'HOTEL';
-    const dateRequest: DateRequest = {
-      startingDate : this.startDate,
-      endingDate : this.endDate,
-      type : this.type
-    };
-    const isDatesValid = this.reservationService.validateDates(dateRequest);
-    console.log("{isDateValid:}",isDatesValid);
-    if(isDatesValid)
-      {
-        this.hotleService.reserveHotel({resourceName,startDate:this.startDate,endDate:this.endDate,city:this.city,country:this.country,type:this.type});
-
-      }else{
-      alert('Reservations overlaping');
+    try {
+      // Call validateDates, awaiting the result (boolean)
+      
+  
+      
+        // Format dates (if needed)
+        // ... (assuming you have a convertDateFormat function)
+        this.startDate = this.convertDateFormat(this.startDate);
+        this.endDate = this.convertDateFormat(this.endDate);
+        this.type = 'HOTEL';
+        const dateRequest: DateRequest = {
+          startingDate: this.startDate,
+          endingDate: this.endDate,
+          type: this.type,
+        };
+        const isDatesValid = await this.reservationService.validateDates(dateRequest);
+        if (isDatesValid) {
+        // Call hotleService for reservation
+        await this.hotleService.reserveHotel({
+          resourceName,
+          startDate: this.startDate,
+          endDate: this.endDate,
+          city: this.city,
+          country: this.country,
+          type: this.type,
+        });
+  
+        console.log('Hotel reservation successful!'); // Or display success message
+      } else {
+        console.error('Reservations overlapping');
+        alert("Reservations overlaping"); // Consider a more descriptive message
+        // Display error message to user (e.g., toaster, modal)
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      // Handle errors gracefully, display a user-friendly error message
     }
-    ////////
-    
-    
-    
   }
   
 
-  reserveTransport(resourceName: string) {
+  async reserveTransport(resourceName: string): Promise<void> {
+    // ... (optional front-end validation logic)
     const validationErrors = this.validateDates(this.startDate, this.endDate);
 
     if (validationErrors.length > 0) {
@@ -151,54 +167,95 @@ export class EventOrganizatorHomepageComponent implements OnInit {
       // Consider using a user-friendly error notification mechanism (e.g., toaster, modal)
       return; // Prevent hotel reservation if validation fails
     }
-    this.startDate = this.convertDateFormat(this.startDate);
-    this.endDate = this.convertDateFormat(this.endDate);
-    //this.endDate = '05-27-2024';
-    this.type = 'TRANSPORT';
-    const dateRequest: DateRequest = {
-      startingDate : this.startDate,
-      endingDate : this.endDate,
-      type : this.type
-    };
-    if(this.reservationService.validateDates(dateRequest))
-      {
-        this.transportService.reserveHotel({resourceName,startDate:this.startDate,endDate:this.endDate,city:this.city,country:this.country,type:this.type});
-
-      }else{
-        alert('Reservations overlaping');
+    try {
+      // Call validateDates, awaiting the result (boolean)
+      
+  
+      
+        // Format dates (if needed)
+        // ... (assuming you have a convertDateFormat function)
+        this.startDate = this.convertDateFormat(this.startDate);
+        this.endDate = this.convertDateFormat(this.endDate);
+        this.type = 'TRANSPORT';
+        const dateRequest: DateRequest = {
+          startingDate: this.startDate,
+          endingDate: this.endDate,
+          type: this.type,
+        };
+        const isDatesValid = await this.reservationService.validateDates(dateRequest);
+        if (isDatesValid) {
+        // Call hotleService for reservation
+        await this.transportService.reserveHotel({
+          resourceName,
+          startDate: this.startDate,
+          endDate: this.endDate,
+          city: this.city,
+          country: this.country,
+          type: this.type,
+        });
+  
+        console.log('Hotel reservation successful!'); // Or display success message
+      } else {
+        console.error('Reservations overlapping');
+        alert("Reservations overlaping"); // Consider a more descriptive message
+        // Display error message to user (e.g., toaster, modal)
       }
+    } catch (error) {
+      console.error('Error:', error);
+      // Handle errors gracefully, display a user-friendly error message
+    }
+    
     
   }
 
-  reserveField(resourceName: string) {
+  async reserveField(resourceName: string): Promise<void> {
+    // ... (optional front-end validation logic)
     const validationErrors = this.validateDates(this.startDate, this.endDate);
 
     if (validationErrors.length > 0) {
       // Display error messages to the user
-      console.error('Invalid date selection:', validationErrors.join(', ')); 
-      alert('Invalid date selection');// Log errors for debugging
+      console.error('Invalid date selection:', validationErrors.join(', '));
+      alert('Invalid date selection'); // Log errors for debugging
       // Consider using a user-friendly error notification mechanism (e.g., toaster, modal)
       return; // Prevent hotel reservation if validation fails
     }
-    this.startDate = this.convertDateFormat(this.startDate);
-    this.endDate = this.convertDateFormat(this.endDate);
-    //this.endDate = '05-27-2024';
-    this.type = 'FIELD';
-    const dateRequest: DateRequest = {
-      startingDate : this.startDate,
-      endingDate : this.endDate,
-      type : this.type
-    };
-    if(this.reservationService.validateDates(dateRequest))
-      {
-        this.fieldService.reserveHotel({resourceName,startDate:this.startDate,endDate:this.endDate,city:this.city,country:this.country,type:this.type});
-        
+    try {
+      // Call validateDates, awaiting the result (boolean)
+      
+  
+      
+        // Format dates (if needed)
+        // ... (assuming you have a convertDateFormat function)
+        this.startDate = this.convertDateFormat(this.startDate);
+        this.endDate = this.convertDateFormat(this.endDate);
+        this.type = 'TRANSPORT';
+        const dateRequest: DateRequest = {
+          startingDate: this.startDate,
+          endingDate: this.endDate,
+          type: this.type,
+        };
+        const isDatesValid = await this.reservationService.validateDates(dateRequest);
+        if (isDatesValid) {
+        // Call hotleService for reservation
+        await this.fieldService.reserveHotel({
+          resourceName,
+          startDate: this.startDate,
+          endDate: this.endDate,
+          city: this.city,
+          country: this.country,
+          type: this.type,
+        });
+  
+        console.log('Hotel reservation successful!'); // Or display success message
+      } else {
+        console.error('Reservations overlapping');
+        alert("Reservations overlaping"); // Consider a more descriptive message
+        // Display error message to user (e.g., toaster, modal)
       }
-    else{
-      alert('Reservations overlaping');
+    } catch (error) {
+      console.error('Error:', error);
+      // Handle errors gracefully, display a user-friendly error message
     }
-    
-
   }
 
   openHotelDialog() {
