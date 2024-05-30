@@ -228,7 +228,7 @@ export class EventOrganizatorHomepageComponent implements OnInit {
         // ... (assuming you have a convertDateFormat function)
         this.startDate = this.convertDateFormat(this.startDate);
         this.endDate = this.convertDateFormat(this.endDate);
-        this.type = 'TRANSPORT';
+        this.type = 'FIELD';
         const dateRequest: DateRequest = {
           startingDate: this.startDate,
           endingDate: this.endDate,
